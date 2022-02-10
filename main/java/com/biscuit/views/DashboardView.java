@@ -7,12 +7,14 @@ package com.biscuit.views;
 import java.io.IOException;
 import java.util.List;
 
+import com.biscuit.ColorCodes;
 import com.biscuit.commands.help.DashboardHelp;
 import com.biscuit.commands.project.AddProject;
 import com.biscuit.commands.project.EditProject;
 import com.biscuit.commands.project.RemoveProject;
 import com.biscuit.factories.DashboardCompleterFactory;
 import com.biscuit.models.Project;
+import com.biscuit.models.TaigaAuth;
 import com.biscuit.models.services.Finder.Projects;
 
 import jline.console.completer.Completer;
@@ -103,6 +105,11 @@ public class DashboardView extends View {
 			if (words[0].equals("add")) {
 				(new AddProject(reader)).execute();
 				resetCompleters();
+				return true;
+			}
+		} else if (words[0].equals("connect_to")) {
+			if (words[1].equals("taiga")) {
+				new TaigaAuth(reader).execute();
 				return true;
 			}
 		}

@@ -52,5 +52,9 @@ public class Dashboard {
 	static public Dashboard load() {
 		return ModelHelper.loadDashboard("dashboard");
 	}
+	
+	public void connectTaiga() {
+		System.out.println("vkdfnvkjfdkgkdfjgklfdjgklfjdlgfdkjgdfkl");
+	}
 
 }
