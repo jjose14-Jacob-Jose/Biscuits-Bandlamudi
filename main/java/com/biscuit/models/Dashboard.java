@@ -52,5 +52,5 @@ public class Dashboard {
 	static public Dashboard load() {
 		return ModelHelper.loadDashboard("dashboard");
 	}
-
+	
 }
