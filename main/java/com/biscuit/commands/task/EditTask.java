@@ -73,7 +73,7 @@ public class EditTask implements Command {
 				t.estimatedTime = Float.valueOf(line);
 				break;
 			} catch (NumberFormatException e) {
-				System.out.println(ColorCodes.RED + "invalid value: must be a float value!" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value: must be a float value!" + ColorCodes.RESET);
 			}
 		}
 
@@ -126,14 +126,14 @@ public class EditTask implements Command {
 				cal.set(year, month, day);
 
 				if (DateService.isSet(t.plannedDate) && cal.getTime().compareTo(t.plannedDate) <= 0) {
-					System.out.println(ColorCodes.RED + "due date must be after planned date" + ColorCodes.RESET);
+					System.out.println(ColorCodes.RED + "Due date must be after planned date" + ColorCodes.RESET);
 					continue;
 				}
 
 				t.dueDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -196,7 +196,7 @@ public class EditTask implements Command {
 				t.plannedDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -254,7 +254,7 @@ public class EditTask implements Command {
 				t.initiatedDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -282,7 +282,7 @@ public class EditTask implements Command {
 		state = reader.readLine().trim();
 
 		while (!Status.values.contains(state)) {
-			System.out.println(ColorCodes.RED + "invalid state, hit tab for auto-complete" + ColorCodes.RESET);
+			System.out.println(ColorCodes.RED + "Invalid state, hit tab for auto-complete" + ColorCodes.RESET);
 			state = reader.readLine().trim();
 		}
 

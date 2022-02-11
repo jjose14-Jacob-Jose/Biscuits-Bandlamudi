@@ -97,14 +97,14 @@ public class AddRelease implements Command {
 				cal.set(year, month, day);
 
 				if (cal.getTime().compareTo(release.startDate) <= 0) {
-					System.out.println(ColorCodes.RED + "due date must be after start date" + ColorCodes.RESET);
+					System.out.println(ColorCodes.RED + "Due date must be after start date" + ColorCodes.RESET);
 					continue;
 				}
 
 				release.dueDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -124,7 +124,7 @@ public class AddRelease implements Command {
 		reader.removeCompleter(oldCompleter);
 		reader.addCompleter(dateCompleter);
 
-		reader.setPrompt(ColorCodes.BLUE + "\nstart date:\n" + ColorCodes.YELLOW + "(hit Tab to see examples)\n(optional: leave it blank and hit enter)\n"
+		reader.setPrompt(ColorCodes.BLUE + "\nStart date:\n" + ColorCodes.YELLOW + "(hit Tab to see examples)\n(optional: leave it blank and hit enter)\n"
 				+ ColorCodes.RESET);
 
 		while ((line = reader.readLine()) != null) {
