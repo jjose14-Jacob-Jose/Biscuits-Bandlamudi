@@ -28,6 +28,7 @@ public class UniversalHelp implements Command {
 		at.addRow("exit", "Exit/terminate the program").setAlignment(new char[] { 'l', 'l' });
 		at.addRow("dashboard", "Go to dashboard").setAlignment(new char[] { 'l', 'l' });
 		at.addRow("go_to dashboard", "Go to dashboard").setAlignment(new char[] { 'l', 'l' });
+		at.addRow("connect_to taiga", "Connect to taiga").setAlignment(new char[] { 'l', 'l' });
 		at.addRow("help", "Show help").setAlignment(new char[] { 'l', 'l' });
 
 		V2_AsciiTableRenderer rend = new V2_AsciiTableRenderer();

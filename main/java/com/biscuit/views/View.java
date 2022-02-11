@@ -136,6 +136,11 @@ public abstract class View {
 				gotoDashboard();
 				return true;
 			}
+			else if(words[0].equals("connect_to") && words[1].equals("taiga")) {
+				System.out.println(ColorCodes.BLUE + "Connecting to Taiga\n");
+				executeCommand(words);
+				return true;
+			}
 		}
 
 		return false;
