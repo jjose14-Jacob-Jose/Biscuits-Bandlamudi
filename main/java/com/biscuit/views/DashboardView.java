@@ -13,6 +13,7 @@ import com.biscuit.commands.project.EditProject;
 import com.biscuit.commands.project.RemoveProject;
 import com.biscuit.factories.DashboardCompleterFactory;
 import com.biscuit.models.Project;
+import com.biscuit.models.Taiga;
 import com.biscuit.models.services.Finder.Projects;
 
 import jline.console.completer.Completer;
@@ -103,6 +104,11 @@ public class DashboardView extends View {
 			if (words[0].equals("add")) {
 				(new AddProject(reader)).execute();
 				resetCompleters();
+				return true;
+			}
+		} else if (words[0].equals("connect_to")) {
+			if (words[1].equals("taiga")) {
+				new Taiga(reader).execute();
 				return true;
 			}
 		}

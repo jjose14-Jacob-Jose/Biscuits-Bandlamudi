@@ -16,6 +16,10 @@ public class DashboardHelp extends UniversalHelp {
 		at.addRow("add project", "Create a new project").setAlignment(new char[] { 'l', 'l' });
 		at.addRow("edit project", "Edit project (followed by a project name)").setAlignment(new char[] { 'l', 'l' });
 		at.addRow("remove project", "Remove or delete project (followed by a project name)").setAlignment(new char[] { 'l', 'l' });
+		
+		at.addRow("connect_to", "Connect to Taiga").setAlignment(new char[] { 'l', 'l' });
+		at.addRow("connect_to taiga", "Similar to 'connect_to', asks for a username and password to connect to Taiga")
+		.setAlignment(new char[] { 'l', 'l' });
 
 	}
 
