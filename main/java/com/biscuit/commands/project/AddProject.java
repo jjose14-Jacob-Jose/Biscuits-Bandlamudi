@@ -25,6 +25,7 @@ public class AddProject implements Command {
 	public boolean execute() throws IOException {
 
 		StringBuilder description = new StringBuilder();
+		StringBuilder gitURL = new StringBuilder();
 		String line;
 		String prompt = reader.getPrompt();
 		
@@ -43,6 +44,18 @@ public class AddProject implements Command {
 		}
 
 		project.description = description.toString();
+		
+		reader.setPrompt(ColorCodes.BLUE + "\nGitURL: " + ColorCodes.YELLOW + "\n(\\q to end writing)\n" + ColorCodes.RESET);
+
+		while ((line = reader.readLine()) != null) {
+			if (line.equals("\\q")) {
+				break;
+			}
+			gitURL.append(line).append("\n");
+			reader.setPrompt("");
+		}
+		
+		project.gitURL = gitURL.toString();
 
 		reader.setPrompt(prompt);
 
