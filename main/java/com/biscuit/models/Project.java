@@ -11,6 +11,7 @@ public class Project {
 
 	public String name;
 	public String description;
+	public String gitURL;
 	public Backlog backlog = new Backlog();
 	public List<Release> releases = new ArrayList<>();
 	public List<Sprint> sprints = new ArrayList<>();
@@ -84,7 +85,7 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "Project name: " + name + "\n\nDescription:-\n" + description;
+		return "project name: " + name + "\n\ndescription:-\n" + description + "\n\nGitURL:-\n" + gitURL;
 	}
 
 }
