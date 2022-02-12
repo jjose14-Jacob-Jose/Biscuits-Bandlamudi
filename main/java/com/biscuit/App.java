@@ -8,12 +8,16 @@ package com.biscuit;
 //import java.util.GregorianCalendar;
 
 import com.biscuit.models.Dashboard;
+import com.biscuit.models.jsonReader;
 import com.biscuit.views.DashboardView;
 
 public class App {
 
 	public static void main(String[] args) {
-		initialize();
+//		initialize();
+		jsonReader obj=new jsonReader();
+		obj.ReadFile();
+		
 	}
 
 
