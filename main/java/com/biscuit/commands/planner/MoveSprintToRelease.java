@@ -18,7 +18,7 @@ public class MoveSprintToRelease implements Command {
 	ConsoleReader reader = null;
 	Project project = null;
 	private String sprintName;
-	private String releaseNam;
+	private String releaseName;
 
 
 	public MoveSprintToRelease(ConsoleReader reader, Project project, String sprintName, String releaseName) {
@@ -26,7 +26,7 @@ public class MoveSprintToRelease implements Command {
 		this.reader = reader;
 		this.project = project;
 		this.sprintName = sprintName;
-		this.releaseNam = releaseName;
+		this.releaseName = releaseName;
 	}
 
 
@@ -37,13 +37,13 @@ public class MoveSprintToRelease implements Command {
 		Sprint s = Sprints.find(project, sprintName);
 
 		// get release
-		Release r = Releases.find(project, releaseNam);
+		Release r = Releases.find(project, releaseName);
 
 		if (s == null || r == null) {
 			return false;
 		}
 
-		// remove it from geneic list in project
+		// remove it from generic list in project
 		project.sprints.remove(s);
 
 		// add it to release
@@ -58,7 +58,7 @@ public class MoveSprintToRelease implements Command {
 		// save project
 		project.save();
 
-		reader.println(ColorCodes.GREEN + "Sprint \"" + sprintName + "\" has been moved to release " + releaseNam + "!" + ColorCodes.RESET);
+		reader.println(ColorCodes.GREEN + "Sprint \"" + sprintName + "\" has been moved to release " + releaseName + "!" + ColorCodes.RESET);
 
 		return true;
 	}

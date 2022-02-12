@@ -22,15 +22,12 @@ import jline.console.completer.StringsCompleter;
 public class EditRelease implements Command {
 	ConsoleReader reader = null;
 	Release r = new Release();
-
-
 	public EditRelease(ConsoleReader reader, Release r) {
 		super();
 		this.reader = reader;
 		this.r = r;
 	}
-
-
+	
 	public boolean execute() throws IOException {
 		String prompt = reader.getPrompt();
 
@@ -39,11 +36,8 @@ public class EditRelease implements Command {
 		setState();
 		setStartDate();
 		setDueDate();
-
 		reader.setPrompt(prompt);
-
 		r.save();
-
 		return true;
 	}
 
@@ -92,14 +86,14 @@ public class EditRelease implements Command {
 				cal.set(year, month, day);
 
 				if (DateService.isSet(r.dueDate) && cal.getTime().compareTo(r.startDate) <= 0) {
-					System.out.println(ColorCodes.RED + "due date must be after start date" + ColorCodes.RESET);
+					System.out.println(ColorCodes.RED + "Due date must be after start date" + ColorCodes.RESET);
 					continue;
 				}
 
 				r.dueDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -157,7 +151,7 @@ public class EditRelease implements Command {
 				r.startDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -185,7 +179,7 @@ public class EditRelease implements Command {
 		state = reader.readLine().trim();
 
 		while (!Status.values.contains(state)) {
-			System.out.println(ColorCodes.RED + "invalid state, hit tab for auto-complete" + ColorCodes.RESET);
+			System.out.println(ColorCodes.RED + "Invalid state, hit tab for auto-complete" + ColorCodes.RESET);
 			state = reader.readLine().trim();
 		}
 

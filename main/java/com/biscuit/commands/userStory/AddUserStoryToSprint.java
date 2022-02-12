@@ -82,7 +82,7 @@ public class AddUserStoryToSprint implements Command {
 				userStory.points = Integer.valueOf(line);
 				break;
 			} catch (NumberFormatException e) {
-				System.out.println(ColorCodes.RED + "invalid value: must be an integer value!" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value: must be an integer value!" + ColorCodes.RESET);
 			}
 		}
 
@@ -113,7 +113,7 @@ public class AddUserStoryToSprint implements Command {
 			try {
 				userStory.businessValue = BusinessValue.valueOf(line);
 			} catch (IllegalArgumentException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 

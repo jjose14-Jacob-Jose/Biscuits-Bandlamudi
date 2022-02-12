@@ -75,7 +75,7 @@ public class EditUserStory implements Command {
 				userStory.points = Integer.valueOf(line);
 				break;
 			} catch (NumberFormatException e) {
-				System.out.println(ColorCodes.RED + "invalid value: must be an integer value!" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value: must be an integer value!" + ColorCodes.RESET);
 			}
 		}
 
@@ -128,14 +128,14 @@ public class EditUserStory implements Command {
 				cal.set(year, month, day);
 
 				if (DateService.isSet(userStory.plannedDate) && cal.getTime().compareTo(userStory.plannedDate) <= 0) {
-					System.out.println(ColorCodes.RED + "due date must be after planned date" + ColorCodes.RESET);
+					System.out.println(ColorCodes.RED + "Due date must be after planned date" + ColorCodes.RESET);
 					continue;
 				}
 
 				userStory.dueDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -198,7 +198,7 @@ public class EditUserStory implements Command {
 				userStory.plannedDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -262,7 +262,7 @@ public class EditUserStory implements Command {
 				userStory.initiatedDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -292,7 +292,7 @@ public class EditUserStory implements Command {
 
 		businussValue = reader.readLine().trim();
 		while (!BusinessValue.values.contains(businussValue)) {
-			System.out.println(ColorCodes.RED + "invalid business value, hit tab for auto-complete" + ColorCodes.RESET);
+			System.out.println(ColorCodes.RED + "Invalid business value, hit tab for auto-complete" + ColorCodes.RESET);
 			businussValue = reader.readLine().trim();
 		}
 
@@ -320,7 +320,7 @@ public class EditUserStory implements Command {
 		state = reader.readLine().trim();
 
 		while (!Status.values.contains(state)) {
-			System.out.println(ColorCodes.RED + "invalid state, hit tab for auto-complete" + ColorCodes.RESET);
+			System.out.println(ColorCodes.RED + "Invalid state, hit tab for auto-complete" + ColorCodes.RESET);
 			state = reader.readLine().trim();
 		}
 
