@@ -31,6 +31,7 @@ public class ShowTask implements Command {
 				ColorCodes.BLUE + "Planned date: " + ColorCodes.RESET + DateService.getDateAsString(t.plannedDate));
 		System.out.println(ColorCodes.BLUE + "Due date: " + ColorCodes.RESET + DateService.getDateAsString(t.dueDate));
 		System.out.println(ColorCodes.BLUE + "Estimated time: " + ColorCodes.RESET + t.estimatedTime);
+		System.out.println(ColorCodes.BLUE + "Happiness: " + ColorCodes.RESET + t.happiness);
 		System.out.println();
 
 		return true;

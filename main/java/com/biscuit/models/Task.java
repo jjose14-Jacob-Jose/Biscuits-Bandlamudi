@@ -7,6 +7,7 @@ package com.biscuit.models;
 import java.util.Date;
 import java.util.List;
 
+import com.biscuit.models.enums.Happiness;
 import com.biscuit.models.enums.Status;
 
 public class Task {
@@ -20,6 +21,7 @@ public class Task {
 	public Date plannedDate = null;
 	public Date dueDate = null;
 	public float estimatedTime;
+	public Happiness happiness;
 
 	public static String[] fields;
 
@@ -35,6 +37,7 @@ public class Task {
 		fields[4] = "planned_date";
 		fields[5] = "due_date";
 		fields[6] = "estimated_time";
+		fields[7] = "happiness";
 	}
 
 
