@@ -15,7 +15,7 @@ public class Project {
 	public Backlog backlog = new Backlog();
 	public List<Release> releases = new ArrayList<>();
 	public List<Sprint> sprints = new ArrayList<>();
-
+	public List<Epic> epics = new ArrayList<>();
 
 	public void save() {
 		ModelHelper.save(this, name);
@@ -80,6 +80,9 @@ public class Project {
 
 	public void addSprint(Sprint s) {
 		sprints.add(s);
+	}
+	public void addEpic(Epic e) {
+		epics.add(e);
 	}
 
 
