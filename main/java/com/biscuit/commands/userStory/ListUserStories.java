@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import com.biscuit.ColorCodes;
 import com.biscuit.commands.Command;
 import com.biscuit.models.Backlog;
+import com.biscuit.models.Epic;
 import com.biscuit.models.Sprint;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.services.DateService;
@@ -31,6 +32,7 @@ public class ListUserStories implements Command {
 	static boolean isReverse = false;
 	private String filterBy;
 	private String sortBy;
+	private Epic epic;
 	private static String lastSortBy = "";
 
 
@@ -74,6 +76,12 @@ public class ListUserStories implements Command {
 		this.filterBy = filterBy.toLowerCase();
 		this.isSort = isSort;
 		this.sortBy = sortBy.toLowerCase();
+	}
+	public ListUserStories(Epic epic, String title) {
+		super();
+		this.epic = epic;
+		this.title = title;
+
 	}
 
 
