@@ -1,8 +1,13 @@
 .classpath
 .project
 <<<<<<< HEAD
+<<<<<<< HEAD
 /bin/
 /binaries/*
 =======
 binaries/
 >>>>>>> origin/24-import-taiga-details
+=======
+binaries/*
+/bin/
+>>>>>>> origin/main

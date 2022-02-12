@@ -102,14 +102,14 @@ public class AddSprint implements Command {
 				cal.set(year, month, day);
 
 				if (cal.getTime().compareTo(sprint.startDate) <= 0) {
-					System.out.println(ColorCodes.RED + "due date must be after start date" + ColorCodes.RESET);
+					System.out.println(ColorCodes.RED + "Due date must be after start date" + ColorCodes.RESET);
 					continue;
 				}
 
 				sprint.dueDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -144,7 +144,7 @@ public class AddSprint implements Command {
 				sprint.dueDate = cal.getTime();
 				break;
 			} catch (IllegalArgumentException e) {
-				System.out.println(ColorCodes.RED + "invalid value: must be a positive integer value!" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value: must be a positive integer value!" + ColorCodes.RESET);
 			}
 		}
 
@@ -192,7 +192,7 @@ public class AddSprint implements Command {
 				sprint.startDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -215,7 +215,7 @@ public class AddSprint implements Command {
 				sprint.velocity = Integer.valueOf(line);
 				break;
 			} catch (NumberFormatException e) {
-				System.out.println(ColorCodes.RED + "invalid value: must be an integer value!" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value: must be an integer value!" + ColorCodes.RESET);
 			}
 		}
 	}
