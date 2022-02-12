@@ -1,4 +1,8 @@
 .classpath
 .project
+<<<<<<< HEAD
 /bin/
 /binaries/*
+=======
+binaries/
+>>>>>>> origin/24-import-taiga-details
