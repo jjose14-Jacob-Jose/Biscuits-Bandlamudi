@@ -14,10 +14,8 @@ import com.biscuit.views.DashboardView;
 public class App {
 
 	public static void main(String[] args) {
-//		initialize();
-		jsonReader obj=new jsonReader();
-		obj.ReadFile();
-		
+	 initialize();
+	
 	}
 
 
