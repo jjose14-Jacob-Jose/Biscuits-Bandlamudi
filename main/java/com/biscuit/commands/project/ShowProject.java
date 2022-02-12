@@ -2,7 +2,6 @@ package com.biscuit.commands.project;
 
 import java.io.IOException;
 
-import com.biscuit.ColorCodes;
 import com.biscuit.commands.Command;
 import com.biscuit.models.Project;
 
@@ -20,10 +19,9 @@ public class ShowProject implements Command {
 	@Override
 	public boolean execute() throws IOException {
 
-		System.out.println(ColorCodes.BLUE + "title: " + ColorCodes.RESET + p.name);
-		System.out.println(ColorCodes.BLUE + "description: ");
-		System.out.println(ColorCodes.RESET + p.description);
-		System.out.println();
+		System.out.println( "Title: " + p.name);
+		System.out.println("Description: \n"+ p.description);
+		System.out.println("Git URL: \n"+ p.gitURL);
 
 		return true;
 	}
