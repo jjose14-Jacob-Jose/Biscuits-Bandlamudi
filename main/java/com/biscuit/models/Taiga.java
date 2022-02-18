@@ -88,5 +88,22 @@ public class Taiga implements Command{
 		    JSONObject myResponse = new JSONObject(response.toString());
 		    AUTH_TOKEN = myResponse.getString("auth_token");
 		    System.out.println(AUTH_TOKEN);
+		    
+		    URL proURL = new URL("https://api.taiga.io/api/v1/projects");
+		
+		    HttpURLConnection proConn = (HttpURLConnection)proURL.openConnection();
+		    proConn.setRequestMethod("GET");
+		    proConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		    proConn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+		    proConn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
+		    proConn.setDoOutput(true);
+		
+		    Reader proIin = new BufferedReader(new InputStreamReader(proConn.getInputStream(), "UTF-8"));
+		    StringBuilder sb1 = new StringBuilder();
+		    for (int c; (c = proIin.read()) >= 0;)
+		        sb1.append((char)c);
+		    String response1 = sb1.toString();
+		    System.out.println(response1);
+		    
 		}
 }
