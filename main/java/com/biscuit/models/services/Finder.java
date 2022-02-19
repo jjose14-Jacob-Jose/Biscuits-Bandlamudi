@@ -11,6 +11,7 @@ import com.biscuit.models.Project;
 import com.biscuit.models.Release;
 import com.biscuit.models.Sprint;
 import com.biscuit.models.Task;
+import com.biscuit.models.Theme;
 import com.biscuit.models.UserStory;
 
 public class Finder {
@@ -83,6 +84,10 @@ public class Finder {
 		public static List<String> getAllNames(Epic epic) {
 			return epic.userStories.stream().map(us -> us.title).collect(Collectors.toList());
 		}
+		
+		public static List<String> getAllNames(Theme theme) {
+			return theme.userStories.stream().map(us -> us.title).collect(Collectors.toList());
+		}
 
 
 		public static UserStory find(Project p, String title) {
@@ -101,6 +106,10 @@ public class Finder {
 		
 		public static UserStory find(Epic epic, String title) {
 			return epic.userStories.stream().filter(us -> us.title.equals(title)).findAny().orElse(null);
+		}
+		
+		public static UserStory find(Theme theme, String title) {
+			return theme.userStories.stream().filter(us -> us.title.equals(title)).findAny().orElse(null);
 		}
 
 
@@ -269,6 +278,38 @@ public class Finder {
 
 
 		public static Epic find(Project p, String name) {
+			return getAll(p).stream().filter(s -> s.name.equals(name)).findAny().orElse(null);
+		}
+
+	}
+	
+	public static class Themes {
+
+		public static List<Theme> getAll(Project p) {
+			List<Theme> themes = new ArrayList<>();
+
+			themes.addAll(getTheme(p));
+
+			return themes;
+		}
+		public static List<Theme> getTheme(Project p) {
+			return p.themes;
+		}
+		
+		public static List<String> getAllNames(Project p) {
+			List<String> all = new ArrayList<>();
+			
+			all.addAll(getThemeNames(p));
+			
+			return all;
+		}
+		
+		public static List<String> getThemeNames(Project p) {
+			return p.epics.stream().map(s -> s.name).collect(Collectors.toList());
+		}
+
+
+		public static Theme find(Project p, String name) {
 			return getAll(p).stream().filter(s -> s.name.equals(name)).findAny().orElse(null);
 		}
 
