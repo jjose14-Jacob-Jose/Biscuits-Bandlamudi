@@ -245,17 +245,26 @@ public class Finder {
 	public static class Epics {
 
 		public static List<Epic> getAll(Project p) {
-			List<Epic> sprints = new ArrayList<>();
+			List<Epic> epics = new ArrayList<>();
 
+			epics.addAll(getEpic(p));
 
-
-			return sprints;
+			return epics;
 		}
-
+		public static List<Epic> getEpic(Project p) {
+			return p.epics;
+		}
+		
 		public static List<String> getAllNames(Project p) {
 			List<String> all = new ArrayList<>();
-
+			
+			all.addAll(getEpicNames(p));
+			
 			return all;
+		}
+		
+		public static List<String> getEpicNames(Project p) {
+			return p.epics.stream().map(s -> s.name).collect(Collectors.toList());
 		}
 
 

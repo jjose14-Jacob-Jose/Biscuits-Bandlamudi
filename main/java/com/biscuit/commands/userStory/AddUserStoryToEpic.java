@@ -43,11 +43,9 @@ public class AddUserStoryToEpic implements Command {
 
 		setDescription(description);
 
-
-
 		reader.setPrompt(prompt);
-
 		epic.addUserStory(userStory);
+		
 		epic.save();
 
 		reader.println();
