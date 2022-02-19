@@ -74,6 +74,10 @@ public class UserStroryView extends View {
 				(new ChangeStatusUserStory(userStory, Status.valueOf(words[1].toUpperCase()))).execute();
 				return true;
 			}
+			else {
+				(new ChangeStatusUserStory(userStory, words[1].toUpperCase())).execute();
+				return true;
+			}
 		} else if (words[0].equals("add")) {
 			if (words[1].equals("task")) {
 				(new AddTaskToUserStory(reader, userStory.project, userStory)).execute();
