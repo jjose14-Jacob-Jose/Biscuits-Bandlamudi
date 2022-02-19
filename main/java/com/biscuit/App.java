@@ -15,13 +15,14 @@ public class App {
 
 	public static void main(String[] args) {
 	 initialize();
+	 jsonReader obj=new jsonReader();
+	 obj.ReadFile();
 	
 	}
 
 
 	private static void initialize() {
-		 jsonReader obj=new jsonReader();
-		 obj.ReadFile();
+
 
 		Dashboard.setInstance(Dashboard.load());
 

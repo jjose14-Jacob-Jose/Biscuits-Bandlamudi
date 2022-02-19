@@ -35,8 +35,8 @@ public class jsonReader {
 	         }
 	         
 		      //Inserting key-value pairs into the json object
-		      jsonObject.put("names", "name");
-		      jsonObject.put("description", "description");
+		      jsonObject.put("names", name);
+		      jsonObject.put("description", description);
 		      jsonObject.put("backlog", backlog);
 		      jsonObject.put("releases", releases);
 		      jsonObject.put("sprints", sprints);
