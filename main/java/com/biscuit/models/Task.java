@@ -17,6 +17,7 @@ public class Task {
 	public String title;
 	public String description;
 	public Status state;
+	public String customStatus;
 	public Date initiatedDate = null;
 	public Date plannedDate = null;
 	public Date dueDate = null;

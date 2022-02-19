@@ -47,6 +47,10 @@ public class TaskView extends View {
 				(new ChangeStatusTask(task, Status.valueOf(words[1].toUpperCase()))).execute();
 				return true;
 			}
+			else {
+				(new ChangeStatusTask(task, words[1].toUpperCase())).execute();
+				return true;
+			}
 		}
 		return false;
 	}
