@@ -24,7 +24,8 @@ public class ShowTask implements Command {
 		System.out.println(ColorCodes.BLUE + "Title: " + ColorCodes.RESET + t.title);
 		System.out.println(ColorCodes.BLUE + "Description: ");
 		System.out.println(ColorCodes.RESET + t.description);
-		System.out.println(ColorCodes.BLUE + "State: " + ColorCodes.RESET + t.state);
+		System.out.print("State: ");
+		System.out.println(t.state != null ? t.state : t.customStatus);
 		System.out.println(
 				ColorCodes.BLUE + "Initiated date: " + ColorCodes.RESET + DateService.getDateAsString(t.initiatedDate));
 		System.out.println(
