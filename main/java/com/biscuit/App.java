@@ -20,6 +20,8 @@ public class App {
 
 
 	private static void initialize() {
+		 jsonReader obj=new jsonReader();
+		 obj.ReadFile();
 
 		Dashboard.setInstance(Dashboard.load());
 

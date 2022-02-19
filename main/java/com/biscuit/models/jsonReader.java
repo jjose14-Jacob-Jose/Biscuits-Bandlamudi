@@ -8,7 +8,7 @@ public class jsonReader {
 
 
 	public void ReadFile() {
-
+		System.out.println("sample:");
 	      JSONParser parser = new JSONParser();
 	      try {
 	         Object obj = parser.parse(new FileReader("/Users/santoshkaluva/biscuit/sample.json"));
@@ -33,10 +33,36 @@ public class jsonReader {
 	         while (iterator3.hasNext()) {
 	            System.out.println(iterator3.next());
 	         }
+	         
+	         
 	      } catch(Exception e) {
 	         e.printStackTrace();
 	      }
+	      
+	     
+	
 	}
+	
+//	public void writeFile()
+//	{
+//		 JSONObject jsonObject = new JSONObject();
+//	      //Inserting key-value pairs into the json object
+//	      jsonObject.put("names", "name");
+//	      jsonObject.put("description", "description");
+//	      jsonObject.put("backlog", backlog);
+//	      jsonObject.put("Date_Of_Birth", "1981-12-05");
+//	      jsonObject.put("Place_Of_Birth", "Delhi");
+//	      jsonObject.put("Country", "India");
+//	      try {
+//	         FileWriter file = new FileWriter("E:/output.json");
+//	         file.write(jsonObject.toJSONString());
+//	         file.close();
+//	      } catch (IOException e) {
+//	         // TODO Auto-generated catch block
+//	         e.printStackTrace();
+//	      }
+//	      System.out.println("JSON file created: "+jsonObject);
+//	}
 	
 
 }
