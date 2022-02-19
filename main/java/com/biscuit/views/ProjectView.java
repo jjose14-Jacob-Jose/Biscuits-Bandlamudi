@@ -96,10 +96,10 @@ public class ProjectView extends View {
 			} 
 			else if (words[1].equals("epics")) {
 				if (words[2].equals("filter")) {
-					(new ListUserStories(UserStories.getAll(project), "epics", true, words[3], false, "")).execute();
+					(new ListEpics(project , "epics")).execute();
 					return true;
 				} else if (words[2].equals("sort")) {
-					(new ListUserStories(UserStories.getAll(project), "epics", false, "", true, words[3])).execute();
+					(new ListEpics(project, "epics")).execute();
 					return true;
 				}
 			}else if (words[1].equals("user_stories")) {
