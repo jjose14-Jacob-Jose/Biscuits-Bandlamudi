@@ -50,7 +50,7 @@ public class AddEpic implements Command {
 		project.save();
 
 		reader.println();
-		reader.println(ColorCodes.GREEN + "Theme \"" + epic.name + "\" has been added!" + ColorCodes.RESET);
+		reader.println(ColorCodes.GREEN + "Epic \"" + epic.name + "\" has been added!" + ColorCodes.RESET);
 
 		return false;
 	}

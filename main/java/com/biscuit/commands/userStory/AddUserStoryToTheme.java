@@ -1,33 +1,37 @@
-package com.biscuit.commands.theme;
+package com.biscuit.commands.userStory;
+
+
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import com.biscuit.ColorCodes;
 import com.biscuit.commands.Command;
-import com.biscuit.factories.DateCompleter;
 import com.biscuit.models.Epic;
-import com.biscuit.models.Project;
 import com.biscuit.models.Sprint;
 import com.biscuit.models.Theme;
+import com.biscuit.models.UserStory;
+import com.biscuit.models.enums.BusinessValue;
+import com.biscuit.models.enums.Points;
 import com.biscuit.models.enums.Status;
 
 import jline.console.ConsoleReader;
-import jline.console.completer.AggregateCompleter;
+import jline.console.completer.ArgumentCompleter;
 import jline.console.completer.Completer;
-public class AddTheme implements Command {
+import jline.console.completer.NullCompleter;
+import jline.console.completer.StringsCompleter;
+
+public class AddUserStoryToTheme implements Command {
 
 	ConsoleReader reader = null;
-	Project project = null;
-	Theme theme = new Theme();
+	Theme theme = null;
+	UserStory userStory = new UserStory();
 
 
-	public AddTheme(ConsoleReader reader, Project project) {
+	public AddUserStoryToTheme(ConsoleReader reader, Theme theme) {
 		super();
 		this.reader = reader;
-		this.project = project;
+		this.theme = theme;
 	}
 
 
@@ -35,22 +39,18 @@ public class AddTheme implements Command {
 		StringBuilder description = new StringBuilder();
 		String prompt = reader.getPrompt();
 
-		theme.project = project;
-		setName();
+		userStory.project = theme.project;
+		setTitle();
 
 		setDescription(description);
 
-
-
-
-
 		reader.setPrompt(prompt);
-
-		project.addTheme(theme);
-		project.save();
+		theme.addUserStory(userStory);
+		
+		theme.save();
 
 		reader.println();
-		reader.println(ColorCodes.GREEN + "Theme \"" + theme.name + "\" has been added!" + ColorCodes.RESET);
+		reader.println(ColorCodes.GREEN + "User Story \"" + userStory.title + "\" has been added to sprint " + theme.name + "!" + ColorCodes.RESET);
 
 		return false;
 	}
@@ -68,14 +68,13 @@ public class AddTheme implements Command {
 			reader.setPrompt("");
 		}
 
-		theme.description = description.toString();
+		userStory.description = description.toString();
 	}
 
 
-	private void setName() throws IOException {
-		reader.setPrompt(ColorCodes.BLUE + "name: " + ColorCodes.RESET);
-		theme.name = reader.readLine();
+	private void setTitle() throws IOException {
+		reader.setPrompt(ColorCodes.BLUE + "title: " + ColorCodes.RESET);
+		userStory.title = reader.readLine();
 	}
 
 }
-
