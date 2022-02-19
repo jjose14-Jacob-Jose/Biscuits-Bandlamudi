@@ -11,12 +11,18 @@ public class ChangeStatusUserStory implements Command {
 
 	UserStory us = null;
 	Status state = null;
-
+	String customStatus = null;
 
 	public ChangeStatusUserStory(UserStory us, Status state) {
 		super();
 		this.us = us;
 		this.state = state;
+	}
+	
+	public ChangeStatusUserStory(UserStory us, String state) {
+		super();
+		this.us = us;
+		this.customStatus = state;
 	}
 
 
@@ -24,13 +30,16 @@ public class ChangeStatusUserStory implements Command {
 	public boolean execute() throws IOException {
 
 		Status oldState = us.state;
-
-		us.state = state;
+		
+		if(state != null)
+			us.state = state;
+		else
+			us.customeStatus = customStatus;
 
 		us.save();
 
 		System.out.println(ColorCodes.GREEN + "State of user story " + us.title + " has been changed from " + oldState
-				+ " to " + us.state + ColorCodes.RED);
+				+ " to " + us.state != null ? us.state : us.customeStatus + ColorCodes.RED);
 
 		return true;
 	}
