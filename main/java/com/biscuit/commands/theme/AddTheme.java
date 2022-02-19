@@ -1,4 +1,4 @@
-package com.biscuit.commands.epic;
+package com.biscuit.commands.theme;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -16,15 +16,14 @@ import com.biscuit.models.enums.Status;
 import jline.console.ConsoleReader;
 import jline.console.completer.AggregateCompleter;
 import jline.console.completer.Completer;
-
-public class AddEpic implements Command {
+public class AddTheme implements Command {
 
 	ConsoleReader reader = null;
 	Project project = null;
-	Epic epic = new Epic();
+	Theme theme = new Theme();
 
 
-	public AddEpic(ConsoleReader reader, Project project) {
+	public AddTheme(ConsoleReader reader, Project project) {
 		super();
 		this.reader = reader;
 		this.project = project;
@@ -35,7 +34,7 @@ public class AddEpic implements Command {
 		StringBuilder description = new StringBuilder();
 		String prompt = reader.getPrompt();
 
-		epic.project = project;
+		theme.project = project;
 		setName();
 
 		setDescription(description);
@@ -46,11 +45,11 @@ public class AddEpic implements Command {
 
 		reader.setPrompt(prompt);
 
-		project.addEpic(epic);
+		project.addTheme(theme);
 		project.save();
 
 		reader.println();
-		reader.println(ColorCodes.GREEN + "Theme \"" + epic.name + "\" has been added!" + ColorCodes.RESET);
+		reader.println(ColorCodes.GREEN + "Epic \"" + theme.name + "\" has been added!" + ColorCodes.RESET);
 
 		return false;
 	}
@@ -78,3 +77,4 @@ public class AddEpic implements Command {
 	}
 
 }
+
