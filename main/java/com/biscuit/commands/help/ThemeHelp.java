@@ -33,6 +33,3 @@ public class ThemeHelp extends UniversalHelp {
 
 }
 
-public class ThemeHelp {
-
-}

@@ -10,6 +10,7 @@ import com.biscuit.commands.Command;
 import com.biscuit.factories.DateCompleter;
 import com.biscuit.models.Epic;
 import com.biscuit.models.Sprint;
+import com.biscuit.models.Theme;
 import com.biscuit.models.enums.Status;
 import com.biscuit.models.services.DateService;
 
