@@ -25,8 +25,9 @@ public class AddProject implements Command {
 	public boolean execute() throws IOException {
 
 		StringBuilder description = new StringBuilder();
-		StringBuilder gitURL = new StringBuilder();
-		String line;
+		StringBuilder team_members = new StringBuilder();
+		String line,new_line,lines;
+		boolean yes = false;
 		String prompt = reader.getPrompt();
 		
 		project.backlog.project = project;
@@ -45,17 +46,34 @@ public class AddProject implements Command {
 
 		project.description = description.toString();
 		
-		reader.setPrompt(ColorCodes.BLUE + "\nGitURL: " + ColorCodes.YELLOW + "\n(\\q to end writing)\n" + ColorCodes.RESET);
+		reader.setPrompt(ColorCodes.BLUE + " Do you want to add team members" + "? [Y/n] " + ColorCodes.RESET);
+		new_line = reader.readLine();
 
-		while ((line = reader.readLine()) != null) {
-			if (line.equals("\\q")) {
-				break;
-			}
-			gitURL.append(line).append("\n");
-			reader.setPrompt("");
-		}
+		yes = (new_line.toLowerCase().equals("y"));
+
 		
-		project.gitURL = gitURL.toString();
+		if (yes) {
+			
+			reader.setPrompt(ColorCodes.GREEN + "\nType names: " + ColorCodes.YELLOW + "\n(\\q to end writing)\n" + ColorCodes.RESET);
+
+			while ((lines = reader.readLine()) != null) {
+				if (lines.equals("\\q")) {
+					break;
+				}
+				team_members.append(lines).append("\n");
+				reader.setPrompt("");
+			}
+		}
+		else {
+			System.out.println(ColorCodes.GREEN+"Okay"+ ColorCodes.RESET);
+		}
+		project.team_members = team_members.toString();
+		
+		reader.setPrompt(ColorCodes.GREEN + "\ngithub url: " + ColorCodes.RESET);
+		
+		project.github= reader.readLine();
+		
+		
 
 		reader.setPrompt(prompt);
 
