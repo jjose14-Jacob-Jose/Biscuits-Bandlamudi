@@ -40,6 +40,7 @@ public class EditSprint implements Command {
 		setStartDate();
 		setDueDate();
 		setVelocity();
+		setRetrospectiveMeetingDetails();
 
 		reader.setPrompt(prompt);
 
@@ -257,5 +258,26 @@ public class EditSprint implements Command {
 		reader.print("\r");
 
 		s.name = reader.readLine();
+	}
+
+	private void setRetrospectiveMeetingDetails() throws IOException {
+		StringBuilder retrospectiveMeetingDetails = new StringBuilder();
+		String line;
+		String prompt = ColorCodes.BLUE + "Retrospective Meeting Details: " + ColorCodes.YELLOW + "(\\q to end writing) "
+				+ ColorCodes.RESET;
+		String preload = s.retrospectiveMeetingDetails.replace("\n", "<newline>").replace("!", "<exclamation-mark>");
+
+		reader.resetPromptLine(prompt, preload, 0);
+		reader.print("\r");
+
+		while ((line = reader.readLine()) != null) {
+			if (line.equals("\\q")) {
+				break;
+			}
+			retrospectiveMeetingDetails.append(line).append("\n");
+			reader.setPrompt("");
+		}
+
+		s.retrospectiveMeetingDetails = retrospectiveMeetingDetails.toString().replace("<newline>", "\n").replace("<exclamation-mark>", "!");
 	}
 }
