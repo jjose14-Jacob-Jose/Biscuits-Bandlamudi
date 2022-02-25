@@ -21,6 +21,7 @@ public class Sprint {
 	public Status state;
 	public StatusSprint planning;
 	public String planningNote;
+	public String sprintGoals;
 	public Date startDate;
 	public Date dueDate;
 	public int assignedEffort;
