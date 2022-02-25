@@ -10,11 +10,16 @@ import com.biscuit.commands.Command;
 import com.biscuit.factories.DateCompleter;
 import com.biscuit.models.Project;
 import com.biscuit.models.Sprint;
+import com.biscuit.models.enums.BusinessValue;
 import com.biscuit.models.enums.Status;
+import com.biscuit.models.enums.StatusSprint;
 
 import jline.console.ConsoleReader;
 import jline.console.completer.AggregateCompleter;
+import jline.console.completer.ArgumentCompleter;
 import jline.console.completer.Completer;
+import jline.console.completer.NullCompleter;
+import jline.console.completer.StringsCompleter;
 
 public class AddSprint implements Command {
 
@@ -32,12 +37,14 @@ public class AddSprint implements Command {
 
 	public boolean execute() throws IOException {
 		StringBuilder description = new StringBuilder();
+
 		String prompt = reader.getPrompt();
 
 		sprint.project = project;
 		setName();
 
 		setDescription(description);
+		setPlanning();
 
 		sprint.state = Status.CREATED;
 		sprint.startDate = new Date(0);
@@ -61,6 +68,45 @@ public class AddSprint implements Command {
 		reader.println(ColorCodes.GREEN + "Sprint \"" + sprint.name + "\" has been added!" + ColorCodes.RESET);
 
 		return false;
+	}
+	
+	private void setPlanning() throws IOException {
+		// List<String> businessValues = new ArrayList<String>();
+		String line;
+		Completer oldCompleter = (Completer) reader.getCompleters().toArray()[0];
+
+		// for (BusinessValue bv : BusinessValue.values()) {
+		// businessValues.add(bv.name().toLowerCase());
+		// }
+
+		Completer businessValuesCompleter = new ArgumentCompleter(new StringsCompleter(StatusSprint.values), new NullCompleter());
+
+		reader.removeCompleter(oldCompleter);
+		reader.addCompleter(businessValuesCompleter);
+
+		reader.setPrompt(ColorCodes.BLUE + "\nSprint Planning:\n" + ColorCodes.YELLOW + "(hit Tab to see valid values)\n" + ColorCodes.RESET);
+
+		while ((line = reader.readLine()) != null) {
+			line = line.trim().toUpperCase();
+
+			try {
+				sprint.planning = StatusSprint.valueOf(line);
+			} catch (IllegalArgumentException e) {
+				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				continue;
+			}
+
+			reader.removeCompleter(businessValuesCompleter);
+			reader.addCompleter(oldCompleter);
+			break;
+		}
+		
+		StringBuilder planningNote = new StringBuilder();
+		if((sprint.planning)==StatusSprint.PLANNED)
+		{
+			setSprintPLanDescription(planningNote);
+		}
+
 	}
 
 
@@ -234,6 +280,21 @@ public class AddSprint implements Command {
 		}
 
 		sprint.description = description.toString();
+	}
+	
+	private void setSprintPLanDescription(StringBuilder planningNote) throws IOException {
+		String line;
+		reader.setPrompt(ColorCodes.BLUE + "\nNote from Planning Session:\n" + ColorCodes.YELLOW + "(\\q to end writing)\n" + ColorCodes.RESET);
+
+		while ((line = reader.readLine()) != null) {
+			if (line.equals("\\q")) {
+				break;
+			}
+			planningNote.append(line).append("\n");
+			reader.setPrompt("");
+		}
+
+		sprint.planningNote = planningNote.toString();
 	}
 
 

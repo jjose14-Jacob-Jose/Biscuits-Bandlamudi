@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.biscuit.models.enums.Status;
+import com.biscuit.models.enums.StatusSprint;
 
 public class Sprint {
 
@@ -18,6 +19,8 @@ public class Sprint {
 	public String name;
 	public String description;
 	public Status state;
+	public StatusSprint planning;
+	public String planningNote;
 	public Date startDate;
 	public Date dueDate;
 	public int assignedEffort;
