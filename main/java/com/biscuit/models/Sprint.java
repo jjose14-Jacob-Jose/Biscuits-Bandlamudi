@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.biscuit.models.enums.SprintReviewStatus;
 import com.biscuit.models.enums.Status;
 import com.biscuit.models.enums.StatusSprint;
 
@@ -21,6 +22,8 @@ public class Sprint {
 	public Status state;
 	public StatusSprint planning;
 	public String planningNote;
+	public SprintReviewStatus review;
+	public String reviewNote;
 	public String sprintGoals;
 	public Date startDate;
 	public Date dueDate;
