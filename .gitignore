@@ -1,5 +1,10 @@
+.metadata
 .classpath
 .project
-bin/
-*.jar
-.metadata
+/bin/
+/binaries/*
+
+#IntelliJ IDE configurations
+/.idea
+/target/
+*.iml

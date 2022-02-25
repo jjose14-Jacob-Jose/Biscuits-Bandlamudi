@@ -12,6 +12,7 @@ import com.biscuit.commands.Command;
 import com.biscuit.models.Backlog;
 import com.biscuit.models.Epic;
 import com.biscuit.models.Sprint;
+import com.biscuit.models.Theme;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.services.DateService;
 
@@ -33,6 +34,7 @@ public class ListUserStories implements Command {
 	private String filterBy;
 	private String sortBy;
 	private Epic epic;
+	private Theme theme;
 	private static String lastSortBy = "";
 
 
@@ -84,6 +86,12 @@ public class ListUserStories implements Command {
 
 	}
 
+	public ListUserStories(Theme theme, String title) {
+		super();
+		this.theme = theme;
+		this.title = title;
+
+	}
 
 	public ListUserStories(List<UserStory> userStories, String title, boolean isFilter, String filterBy, boolean isSort, String sortBy) {
 		super();
