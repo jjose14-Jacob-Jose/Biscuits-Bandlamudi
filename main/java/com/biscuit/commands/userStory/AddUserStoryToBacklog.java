@@ -82,7 +82,7 @@ public class AddUserStoryToBacklog implements Command {
 				userStory.points = Integer.valueOf(line);
 				break;
 			} catch (NumberFormatException e) {
-				System.out.println(ColorCodes.RED + "invalid value: must be an integer value!" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value: must be an integer value!" + ColorCodes.RESET);
 			}
 		}
 

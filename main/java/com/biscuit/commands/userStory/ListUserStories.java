@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
 import com.biscuit.ColorCodes;
 import com.biscuit.commands.Command;
 import com.biscuit.models.Backlog;
+import com.biscuit.models.Epic;
 import com.biscuit.models.Sprint;
+import com.biscuit.models.Theme;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.services.DateService;
 
@@ -31,6 +33,8 @@ public class ListUserStories implements Command {
 	static boolean isReverse = false;
 	private String filterBy;
 	private String sortBy;
+	private Epic epic;
+	private Theme theme;
 	private static String lastSortBy = "";
 
 
@@ -75,7 +79,19 @@ public class ListUserStories implements Command {
 		this.isSort = isSort;
 		this.sortBy = sortBy.toLowerCase();
 	}
+	public ListUserStories(Epic epic, String title) {
+		super();
+		this.epic = epic;
+		this.title = title;
 
+	}
+
+	public ListUserStories(Theme theme, String title) {
+		super();
+		this.theme = theme;
+		this.title = title;
+
+	}
 
 	public ListUserStories(List<UserStory> userStories, String title, boolean isFilter, String filterBy, boolean isSort, String sortBy) {
 		super();
@@ -103,7 +119,7 @@ public class ListUserStories implements Command {
 		} else if (this.userStories != null) {
 			userStories = this.userStories;
 		} else {
-			System.err.println("error: backlog, sprint, and userStories are null");
+			System.err.println("Error: Backlog, sprint, and userStories are null");
 			return false;
 		}
 

@@ -7,6 +7,8 @@ package com.biscuit.views;
 import java.io.IOException;
 import java.util.List;
 
+import com.biscuit.commands.epic.AddEpic;
+import com.biscuit.commands.epic.ListEpics;
 import com.biscuit.commands.help.ProjectHelp;
 import com.biscuit.commands.planner.ShowPlan;
 import com.biscuit.commands.planner.ShowPlanDetails;
@@ -16,15 +18,21 @@ import com.biscuit.commands.release.ListReleases;
 import com.biscuit.commands.sprint.AddSprint;
 import com.biscuit.commands.sprint.ListSprints;
 import com.biscuit.commands.task.ListTasks;
+import com.biscuit.commands.theme.AddTheme;
+import com.biscuit.commands.theme.ListThemes;
 import com.biscuit.commands.userStory.AddUserStoryToBacklog;
 import com.biscuit.commands.userStory.ListUserStories;
 import com.biscuit.factories.ProjectCompleterFactory;
+import com.biscuit.models.Epic;
 import com.biscuit.models.Project;
 import com.biscuit.models.Release;
 import com.biscuit.models.Sprint;
+import com.biscuit.models.Theme;
 import com.biscuit.models.UserStory;
+import com.biscuit.models.services.Finder.Epics;
 import com.biscuit.models.services.Finder.Releases;
 import com.biscuit.models.services.Finder.Sprints;
+import com.biscuit.models.services.Finder.Themes;
 import com.biscuit.models.services.Finder.UserStories;
 
 import jline.console.completer.Completer;
@@ -89,7 +97,25 @@ public class ProjectView extends View {
 					(new ListSprints(project, "Sprints", false, "", true, words[3])).execute();
 					return true;
 				}
-			} else if (words[1].equals("user_stories")) {
+			} 
+			else if (words[1].equals("epics")) {
+				if (words[2].equals("filter")) {
+					(new ListEpics(project , "epics")).execute();
+					return true;
+				} else if (words[2].equals("sort")) {
+					(new ListEpics(project, "epics")).execute();
+					return true;
+				}
+			}
+			else if (words[1].equals("themes")) {
+				if (words[2].equals("filter")) {
+					(new ListThemes(project , "themes")).execute();
+					return true;
+				} else if (words[2].equals("sort")) {
+					(new ListThemes(project, "themes")).execute();
+					return true;
+				}
+			}else if (words[1].equals("user_stories")) {
 				if (words[2].equals("filter")) {
 					(new ListUserStories(UserStories.getAll(project), "User Stories (Filtered)", true, words[3], false, "")).execute();
 					return true;
@@ -131,7 +157,36 @@ public class ProjectView extends View {
 					sv.view();
 					return true;
 				}
-			} else if (words[1].equals("user_story")) {
+			} 
+			
+			else if (words[1].equals("epic")) {
+				if (Epics.getAllNames(project).contains(words[2])) {
+					Epic s = Epics.find(project, words[2]);
+					if (s == null) {
+						return false;
+					}
+
+					// s.project = project;
+
+					EpicView sv = new EpicView(this, s);
+					sv.view();
+					return true;
+				}
+				}
+			else if (words[1].equals("theme")) {
+				if (Themes.getAllNames(project).contains(words[2])) {
+					Theme s = Themes.find(project, words[2]);
+					if (s == null) {
+						return false;
+					}
+
+					// s.project = project;
+
+					ThemeView sv = new ThemeView(this, s);
+					sv.view();
+					return true;
+				}
+				}else if (words[1].equals("user_story")) {
 				if (UserStories.getAllNames(project).contains(words[2])) {
 					UserStory us = UserStories.find(project, words[2]);
 					if (us == null) {
@@ -144,6 +199,7 @@ public class ProjectView extends View {
 				}
 			}
 		}
+		
 
 		return false;
 	}
@@ -164,7 +220,19 @@ public class ProjectView extends View {
 				resetCompleters();
 
 				return true;
+			}else if (words[1].equals("epic")) {
+				(new AddEpic(reader, project)).execute();
+				resetCompleters();
+
+				return true;
 			}
+			else if (words[1].equals("theme")) {
+				(new AddTheme(reader, project)).execute();
+				resetCompleters();
+
+				return true;
+			}
+
 
 		} else if (words[0].equals("go_to")) {
 			if (words[1].equals("backlog")) {
@@ -184,7 +252,20 @@ public class ProjectView extends View {
 				ssv.view();
 
 				return true;
-			} else if (words[1].equals("planner")) {
+			} else if (words[1].equals("epics")) {
+
+				EpicsView esv = new EpicsView(this, project);
+				esv.view();
+
+				return true;
+			}
+			else if (words[1].equals("themes")) {
+
+				ThemesView esv = new ThemesView(this, project);
+				esv.view();
+
+				return true;
+			}else if (words[1].equals("planner")) {
 
 				PlannerView pv = new PlannerView(this, project);
 				pv.view();
@@ -203,7 +284,15 @@ public class ProjectView extends View {
 			} else if (words[1].equals("sprints")) {
 				(new ListSprints(project, "Sprints")).execute();
 				return true;
-			} else if (words[1].equals("user_stories")) {
+			} 
+			 else if (words[1].equals("epics")) {
+					(new ListEpics(project, "Epics")).execute();
+					return true;
+					}
+			 else if (words[1].equals("themes")) {
+					(new ListThemes(project, "Themes")).execute();
+					return true;
+					}else if (words[1].equals("user_stories")) {
 				(new ListUserStories(UserStories.getAll(project), "All User Stories")).execute();
 				return true;
 			}

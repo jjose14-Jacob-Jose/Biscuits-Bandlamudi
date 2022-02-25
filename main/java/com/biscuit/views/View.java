@@ -105,7 +105,7 @@ public abstract class View {
 				}
 
 				if (!executeCommand(words)) {
-					System.out.println("invalid command!");
+					System.out.println("Invalid command!");
 				}
 			}
 		} catch (IOException e) {

@@ -40,6 +40,7 @@ public class EditSprint implements Command {
 		setStartDate();
 		setDueDate();
 		setVelocity();
+		setRetrospectiveMeetingDetails();
 
 		reader.setPrompt(prompt);
 
@@ -70,7 +71,7 @@ public class EditSprint implements Command {
 				s.velocity = Integer.valueOf(line);
 				break;
 			} catch (NumberFormatException e) {
-				System.out.println(ColorCodes.RED + "invalid value: must be an integer value!" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value: must be an integer value!" + ColorCodes.RESET);
 			}
 		}
 
@@ -130,7 +131,7 @@ public class EditSprint implements Command {
 				s.dueDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -188,7 +189,7 @@ public class EditSprint implements Command {
 				s.startDate = cal.getTime();
 
 			} catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				System.out.println(ColorCodes.RED + "Invalid value" + ColorCodes.RESET);
 				continue;
 			}
 
@@ -216,7 +217,7 @@ public class EditSprint implements Command {
 		state = reader.readLine().trim();
 
 		while (!Status.values.contains(state)) {
-			System.out.println(ColorCodes.RED + "invalid state, hit tab for auto-complete" + ColorCodes.RESET);
+			System.out.println(ColorCodes.RED + "Invalid state, hit tab for auto-complete" + ColorCodes.RESET);
 			state = reader.readLine().trim();
 		}
 
@@ -257,5 +258,29 @@ public class EditSprint implements Command {
 		reader.print("\r");
 
 		s.name = reader.readLine();
+	}
+
+	private void setRetrospectiveMeetingDetails() throws IOException {
+		StringBuilder retrospectiveMeetingDetails = new StringBuilder();
+		String line;
+		String prompt = ColorCodes.BLUE + "Retrospective Meeting Details: " + ColorCodes.YELLOW + "(\\q to end writing) "
+				+ ColorCodes.RESET;
+		if(s.retrospectiveMeetingDetails == null) {
+			s.retrospectiveMeetingDetails = new String();
+		}
+		String preload = s.retrospectiveMeetingDetails.replace("\n", "<newline>").replace("!", "<exclamation-mark>");
+
+		reader.resetPromptLine(prompt, preload, 0);
+		reader.print("\r");
+
+		while ((line = reader.readLine()) != null) {
+			if (line.equals("\\q")) {
+				break;
+			}
+			retrospectiveMeetingDetails.append(line).append("\n");
+			reader.setPrompt("");
+		}
+
+		s.retrospectiveMeetingDetails = retrospectiveMeetingDetails.toString().replace("<newline>", "\n").replace("<exclamation-mark>", "!");
 	}
 }
