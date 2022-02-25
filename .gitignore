@@ -3,3 +3,7 @@
 /bin/
 /binaries/*
 
+#IntelliJ IDE configurations
+/.idea
+/target/
+*.iml
