@@ -1,5 +1,4 @@
 .classpath
 .project
-<<<<<<< HEAD
 /bin/
-binaries/
+/binaries/*
