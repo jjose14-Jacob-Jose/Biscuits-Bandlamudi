@@ -265,6 +265,9 @@ public class EditSprint implements Command {
 		String line;
 		String prompt = ColorCodes.BLUE + "Retrospective Meeting Details: " + ColorCodes.YELLOW + "(\\q to end writing) "
 				+ ColorCodes.RESET;
+		if(s.retrospectiveMeetingDetails == null) {
+			s.retrospectiveMeetingDetails = new String();
+		}
 		String preload = s.retrospectiveMeetingDetails.replace("\n", "<newline>").replace("!", "<exclamation-mark>");
 
 		reader.resetPromptLine(prompt, preload, 0);
