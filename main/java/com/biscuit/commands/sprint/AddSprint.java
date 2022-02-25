@@ -102,9 +102,11 @@ public class AddSprint implements Command {
 		}
 		
 		StringBuilder planningNote = new StringBuilder();
+		StringBuilder sprintGoals = new StringBuilder();
 		if((sprint.planning)==StatusSprint.PLANNED)
 		{
 			setSprintPLanDescription(planningNote);
+			setSprintGoals(sprintGoals);
 		}
 
 	}
@@ -295,6 +297,21 @@ public class AddSprint implements Command {
 		}
 
 		sprint.planningNote = planningNote.toString();
+	}
+	
+	private void setSprintGoals(StringBuilder sprintGoals) throws IOException {
+		String line;
+		reader.setPrompt(ColorCodes.BLUE + "\nSprinGoals:\n" + ColorCodes.YELLOW + "(\\q to end writing)\n" + ColorCodes.RESET);
+
+		while ((line = reader.readLine()) != null) {
+			if (line.equals("\\q")) {
+				break;
+			}
+			sprintGoals.append(line).append("\n");
+			reader.setPrompt("");
+		}
+
+		sprint.sprintGoals = sprintGoals.toString();
 	}
 
 
