@@ -7,6 +7,7 @@ package com.biscuit.views;
 import java.io.IOException;
 import java.util.List;
 
+import com.biscuit.ColorCodes;
 import com.biscuit.commands.help.DashboardHelp;
 import com.biscuit.commands.project.AddProject;
 import com.biscuit.commands.project.EditProject;
@@ -78,8 +79,16 @@ public class DashboardView extends View {
 				}
 				return false;
 			}
+		} else if (words[0].equals("get")) {
+			if (words[1].equals("project") || words[1].equals("projects")) {
+				if(words[2].equals("by_slug")) {
+					reader.setPrompt(ColorCodes.BLUE + "Enter project slug: " + ColorCodes.RESET);
+					String slug = reader.readLine();
+					new Taiga(reader).getProjectsBySlug(slug);
+					return true;
+				}
+			}
 		}
-
 		return false;
 	}
 
@@ -111,8 +120,18 @@ public class DashboardView extends View {
 				new Taiga(reader).execute();
 				return true;
 			}
+		} else if (words[0].equals("get")) {
+			if (words[1].equals("project") || words[1].equals("projects")) {
+				if(Taiga.AUTH_TOKEN != null) {
+					new Taiga(reader).getProjects();
+					return true;
+				}
+				else {
+					System.out.println("Not Authenticated");
+					return false;
+				}
+			}
 		}
-
 		return false;
 	}
 
