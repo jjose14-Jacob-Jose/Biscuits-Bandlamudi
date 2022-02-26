@@ -91,6 +91,29 @@ public class Taiga implements Command{
 		    //System.out.println(AUTH_TOKEN);
 		}
 	
+	public void getProjectsBySlug(String slug) {
+		URL proURL;
+		try {
+			proURL = new URL("https://api.taiga.io/api/v1/projects/by_slug?slug=" + slug);
+			
+		    HttpURLConnection proConn = (HttpURLConnection)proURL.openConnection();
+		    proConn.setRequestMethod("GET");
+		    proConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		    proConn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
+		    proConn.setDoOutput(true);
+		    
+		    System.out.println("Retrieving details by Slug "+ slug);
+		    Reader proIin = new BufferedReader(new InputStreamReader(proConn.getInputStream(), "UTF-8"));
+		    StringBuilder sb1 = new StringBuilder();
+		    for (int c; (c = proIin.read()) >= 0;)
+		        sb1.append((char)c);
+		    String response1 = sb1.toString();
+		    System.out.println(response1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+  }
 	public void getProjects() throws ProtocolException {
 		 	URL proURL;
 			try {
