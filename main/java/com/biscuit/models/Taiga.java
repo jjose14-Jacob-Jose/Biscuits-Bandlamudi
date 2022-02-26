@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import com.biscuit.ColorCodes;
 import com.biscuit.commands.Command;
+import com.biscuit.models.services.MaskPassword;
 
 import jline.console.ConsoleReader;
 
@@ -35,12 +36,12 @@ public class Taiga implements Command{
 		
 		reader.setPrompt(ColorCodes.BLUE + "Username/email: " + ColorCodes.RESET);
 		String username = reader.readLine();
-		reader.setPrompt(ColorCodes.BLUE + "\nPassword: " + ColorCodes.BLACK);
-		String password = reader.readLine();
+
+		String password = MaskPassword.readPassword("Enter password:");
 		
 		//reader.setPrompt();
 		reader.println(""+ColorCodes.RESET);
-		System.out.println(username+"\t"+password);
+		//System.out.println(username+"\t"+password);
 		
 		reader.setPrompt(prompt);
 		
@@ -135,3 +136,5 @@ public class Taiga implements Command{
 				e.printStackTrace();
 			}
 	}
+}
+

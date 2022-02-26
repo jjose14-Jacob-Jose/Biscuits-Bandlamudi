@@ -39,7 +39,7 @@ public class ChangeStatusUserStory implements Command {
 		us.save();
 
 		System.out.println("State of user story " + us.title + " has been changed from " + oldState+ " to " );
-		System.out.println(state != null ? us.state : us.customeStatus + ColorCodes.RED);
+		System.out.print(state != null ? us.state : us.customeStatus + ColorCodes.RED);
 
 		return true;
 	}
