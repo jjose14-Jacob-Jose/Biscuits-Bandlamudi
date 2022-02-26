@@ -12,6 +12,7 @@ public class Project {
 	public String name;
 	public String description;
 	public String github;
+	public String gitURL;
 	public String team_members;
 	public Backlog backlog = new Backlog();
 	public List<Release> releases = new ArrayList<>();
@@ -63,14 +64,6 @@ public class Project {
 			for (Task t : us.tasks) {
 				t.project = this;
 			}
-
-			// for (Bug b : us.bugs) {
-			// b.project = this;
-			// }
-
-			// for (Test t : us.tests) {
-			// t.project = this;
-			// }
 		}
 	}
 
