@@ -87,10 +87,8 @@ public class DashboardView extends View {
 					new Taiga(reader).getProjectsBySlug(slug);
 					return true;
 				}
-				
 			}
 		}
-
 		return false;
 	}
 
@@ -122,8 +120,18 @@ public class DashboardView extends View {
 				new Taiga(reader).execute();
 				return true;
 			}
-		} 
-
+		} else if (words[0].equals("get")) {
+			if (words[1].equals("project") || words[1].equals("projects")) {
+				if(Taiga.AUTH_TOKEN != null) {
+					new Taiga(reader).getProjects();
+					return true;
+				}
+				else {
+					System.out.println("Not Authenticated");
+					return false;
+				}
+			}
+		}
 		return false;
 	}
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -41,9 +42,7 @@ public class Taiga implements Command{
 		reader.println(""+ColorCodes.RESET);
 		System.out.println(username+"\t"+password);
 		
-
 		reader.setPrompt(prompt);
-	//	prompt = prompt +"~sample";
 		
 		try {
 			authenticate(username, password);
@@ -52,8 +51,9 @@ public class Taiga implements Command{
 			System.out.println(ex);
 		}
 		reader.println();
-		reader.println(ColorCodes.GREEN + "Connected to Taiga " + ColorCodes.RESET);
-		//reader.setPrompt(prompt);
+		if(AUTH_TOKEN != null)
+			reader.println(ColorCodes.GREEN + "Connected to Taiga " + ColorCodes.RESET);
+		
 		return false;
 	}
 
@@ -87,7 +87,7 @@ public class Taiga implements Command{
 		    System.out.println(response);
 		    JSONObject myResponse = new JSONObject(response.toString());
 		    AUTH_TOKEN = myResponse.getString("auth_token");
-		    System.out.println(AUTH_TOKEN);
+		    //System.out.println(AUTH_TOKEN);
 		}
 	
 	public void getProjectsBySlug(String slug) {
@@ -112,5 +112,26 @@ public class Taiga implements Command{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+  }
+	public void getProjects() throws ProtocolException {
+		 	URL proURL;
+			try {
+				proURL = new URL("https://api.taiga.io/api/v1/projects");
+			
+			    HttpURLConnection proConn = (HttpURLConnection)proURL.openConnection();
+			    proConn.setRequestMethod("GET");
+			    proConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			    proConn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
+			    proConn.setDoOutput(true);
+			
+			    Reader proIin = new BufferedReader(new InputStreamReader(proConn.getInputStream(), "UTF-8"));
+			    StringBuilder sb1 = new StringBuilder();
+			    for (int c; (c = proIin.read()) >= 0;)
+			        sb1.append((char)c);
+			    String response1 = sb1.toString();
+			    System.out.println(response1);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
-}
