@@ -97,7 +97,7 @@ public class EditProject implements Command {
 		reader.print("\r");
 		
 		while ((new_line = reader.readLine()) != null) {
-			if (new_lie.equals("\\q")) {
+			if (new_line.equals("\\q")) {
 				break;
 			}
 			github.append(new_line).append("\n");
