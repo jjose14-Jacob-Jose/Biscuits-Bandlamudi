@@ -12,6 +12,7 @@ import com.biscuit.commands.epic.ListEpics;
 import com.biscuit.commands.help.ProjectHelp;
 import com.biscuit.commands.planner.ShowPlan;
 import com.biscuit.commands.planner.ShowPlanDetails;
+import com.biscuit.commands.project.PrintProject;
 import com.biscuit.commands.project.ShowProject;
 import com.biscuit.commands.release.AddRelease;
 import com.biscuit.commands.release.ListReleases;
@@ -345,6 +346,8 @@ public class ProjectView extends View {
 			return (new ShowProject(project).execute());
 		} else if (words[0].equals("help")) {
 			return (new ProjectHelp().execute());
+		}else if (words[0].equals("print_to_file")) {
+			return (new PrintProject().execute());
 		}
 
 		return false;

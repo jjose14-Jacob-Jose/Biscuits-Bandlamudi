@@ -58,6 +58,16 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- For Console Reader -->
+        <!-- https://mvnrepository.com/artifact/jline/jline -->
+        <dependency>
+            <groupId>jline</groupId>
+            <artifactId>jline</artifactId>
+            <version>2.14.6</version>
+        </dependency>
+
+
+
 
 
     </dependencies>
