@@ -7,6 +7,10 @@ package com.biscuit.views;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import com.biscuit.ColorCodes;
 import com.biscuit.commands.help.DashboardHelp;
 import com.biscuit.commands.project.AddProject;
@@ -21,8 +25,30 @@ import jline.console.completer.Completer;
 
 public class DashboardView extends View {
 
+	public static JFrame frame = new JFrame();
+	public static JPanel panel = new JPanel();
 	public DashboardView() {
 		super(null, "Dashboard");
+	
+		JButton addProject = new JButton("Add a Project");
+		JButton Help  = new JButton("Help");
+		JButton exit  = new JButton("Exit");
+
+		addProject.addActionListener(this);
+		Help.addActionListener(this);
+		exit.addActionListener(this);
+
+		panel.add(addProject);
+		panel.add(Help);
+		panel.add(exit);
+
+		
+	    frame.add(panel);
+		panel.setVisible(true);
+		frame.pack();
+		frame.setVisible(true);
+		
+		
 	}
 
 
