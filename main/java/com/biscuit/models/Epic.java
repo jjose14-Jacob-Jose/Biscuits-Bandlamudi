@@ -36,4 +36,20 @@ public void save() {
 	project.save();
 }
 
+public String toString () {
+	StringBuilder epicDetails = new StringBuilder();
+	epicDetails.append("Epic Name: "+ name + "\n");
+	epicDetails.append("Epic Description: "+ description + "\n");
+
+	if(userStories.size() == 0) {
+		epicDetails.append("Epic has no user stories");
+	}
+	else {
+		epicDetails.append("User stories in this epic are: " + "\n");
+		for(UserStory userStory: userStories) {
+			epicDetails.append(userStory.toString());
+		}
+	}
+	return epicDetails.toString();
+	}
 }

@@ -38,4 +38,24 @@ public class Release {
 	public void save() {
 		project.save();
 	}
+
+	public String toString() {
+		StringBuilder releaseDetails = new StringBuilder();
+		releaseDetails.append("Release Details " + "\n");
+		releaseDetails.append("Release Name: " + name +  "\n");
+		releaseDetails.append("Release Description: " + description +  "\n");
+		releaseDetails.append("Release State: " + state +  "\n");
+		releaseDetails.append("Release Start Date: " + startDate +  "\n");
+		releaseDetails.append("Release Due Date: " + dueDate +  "\n");
+		releaseDetails.append("Release Assigned Effort: " + assignedEffort +  "\n");
+		if(sprints.size()>0) {
+			releaseDetails.append("Sprint Details of this release are" + "\n");
+			releaseDetails.append(sprints.toString());
+
+		} else {
+			releaseDetails.append("No Sprints for this release");
+		}
+		return releaseDetails.toString();
+
+	}
 }

@@ -53,4 +53,31 @@ public class Sprint {
 		project.save();
 	}
 
+	public String toString () {
+		StringBuilder sprintInformation = new StringBuilder();
+		sprintInformation.append("Sprint Details " + "\n");
+		sprintInformation.append("Sprint Name :" + name + "\n");
+		sprintInformation.append("Sprint Description :" + name + "\n");
+		sprintInformation.append("Sprint State :" + name + "\n");
+		sprintInformation.append("Sprint Start Date :" + name + "\n");
+		sprintInformation.append("Sprint Due Date :" + name + "\n");
+		sprintInformation.append("Sprint Assigned Effort :" + name + "\n");
+		sprintInformation.append("Sprint Velocity :" + name + "\n");
+		sprintInformation.append("Sprint Retrospective Meeting Details :" + name + "\n");
+
+		if(userStories.size() == 0)
+		{
+			sprintInformation.append("Sprint has no user stories");
+		}
+		else {
+			sprintInformation.append("User Stores in this sprint are: " + "\n");
+			for (UserStory userStory: userStories) {
+				sprintInformation.append(userStory.toString() + "\n");
+			}
+
+		}
+
+		return sprintInformation.toString();
+	}
+
 }

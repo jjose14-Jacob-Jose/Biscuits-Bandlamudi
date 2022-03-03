@@ -40,4 +40,17 @@ public class UserStory {
 		project.save();
 	}
 
+	public String toString() {
+		StringBuilder userStoryDetails = new StringBuilder();
+		userStoryDetails.append("/n"+"User Story Information");
+		userStoryDetails.append("/n"+"Title: "+title);
+		userStoryDetails.append("/n"+"Description: "+description);
+		userStoryDetails.append("/n"+"Business Value: "+businessValue);
+		userStoryDetails.append("/n"+"Initiated Date: "+initiatedDate);
+		userStoryDetails.append("/n"+"Planned Date: "+plannedDate);
+		userStoryDetails.append("/n"+"Due Date: "+dueDate);
+		userStoryDetails.append("/n"+"Points: "+points);
+		return userStoryDetails.toString();
+	}
+
 }
