@@ -1,6 +1,8 @@
 package com.biscuit.commands.project;
 
+import com.biscuit.models.Backlog;
 import com.biscuit.models.Project;
+import com.biscuit.models.UserStory;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,37 +21,33 @@ public class SaveToFile {
             outputFileName.append(System.getProperty("user.dir"));
 
             if(objectTobeSaved instanceof Project) {
-                outputFileName.append("\\" + ((Project) objectTobeSaved).name + " information.txt");
-                System.out.println("Output FIle Name: " + outputFileName.toString());
-
-                StringBuilder outputFileContents = new StringBuilder();
-                outputFileContents.append(objectTobeSaved.toString());
-
-                File outputFile = new File (outputFileName.toString());
-                FileWriter fileWrite = new FileWriter(outputFile);
-                fileWrite.write(outputFileContents.toString());
-                fileWrite.close();
-
-                System.out.println("Output file contents :"+outputFileContents.toString());
-                System.out.println("Saved to a text file");
-                System.out.printf("Text File address: "+ outputFileName);
-
+                outputFileName.append("\\" + ((Project) objectTobeSaved).name);
+            }  else if (objectTobeSaved instanceof UserStory) {
+                outputFileName.append("\\" + ((UserStory) objectTobeSaved).title);
+            }  else if (objectTobeSaved instanceof Backlog) {
+                outputFileName.append("\\" + ((Backlog) objectTobeSaved).project);
+            }  else {
+                outputFileName.append("\\ ");
             }
 
 
+
+            outputFileName.append(" information.txt");
+            System.out.println("Output File name "+outputFileName);
+            StringBuilder outputFileContents = new StringBuilder();
+            outputFileContents.append(objectTobeSaved.toString());
+
+            File outputFile = new File (outputFileName.toString());
+            FileWriter fileWrite = new FileWriter(outputFile);
+            fileWrite.write(outputFileContents.toString());
+            fileWrite.close();
+
+            System.out.println("Output file contents :"+outputFileContents.toString());
+            System.out.println("Saved to a text file");
+            System.out.println("Text File address: "+ outputFileName);
+            System.out.println("\n");
         }
-
-
-        System.out.println("Saved to file. ");
+        
         return true;
     }
-
-
-//    @Override
-//    public boolean execute() throws IOException {
-//        String addressOfCurrentDirectory = System.getProperty("user.dir");
-//        System.out.println("Current Directory: "+addressOfCurrentDirectory);
-//        System.out.println("Project details has been printed. ");
-//        return false;
-//    }
 }
