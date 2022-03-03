@@ -87,7 +87,18 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "project name: " + name + "\n\ndescription:-\n" + description + "\n\nGitURL:-\n" + gitURL;
+		StringBuilder projectDetails = new StringBuilder();
+		projectDetails.append("\n" + "Project Information" + "\n");
+		projectDetails.append("Project Name: " + name + "\n");
+		projectDetails.append("Project Description: " + description + "\n");
+		projectDetails.append("Project GitHub URL: " + gitURL + "\n");
+		projectDetails.append("Project Team Members: " + team_members + "\n");
+		projectDetails.append("Project Backlog: " + backlog.toString() + "\n");
+		projectDetails.append("Project Releases: " + releases.toString() + "\n");
+		projectDetails.append("Project Sprints: " + sprints.toString() + "\n");
+		projectDetails.append("Project Epics: " + epics.toString() + "\n");
+		projectDetails.append("Project Themes: " + themes.toString() + "\n");
+		return  projectDetails.toString();
 	}
 
 }
