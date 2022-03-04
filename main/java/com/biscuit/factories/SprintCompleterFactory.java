@@ -1,18 +1,17 @@
 package com.biscuit.factories;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import com.biscuit.models.Sprint;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.enums.Status;
 import com.biscuit.models.services.Finder.UserStories;
-
 import jline.console.completer.ArgumentCompleter;
 import jline.console.completer.Completer;
 import jline.console.completer.NullCompleter;
 import jline.console.completer.StringsCompleter;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class SprintCompleterFactory {
 
@@ -24,7 +23,7 @@ public class SprintCompleterFactory {
 		// new StringsCompleter("summary", "show", "times", "edit", "back",
 		// "user_stories"), new NullCompleter()));
 
-		completers.add(new ArgumentCompleter(new StringsCompleter("show", "edit", "back", "user_stories"), new NullCompleter()));
+		completers.add(new ArgumentCompleter(new StringsCompleter("show", "edit", "back", "user_stories", "print_to_file"), new NullCompleter()));
 
 		completers.add(
 				new ArgumentCompleter(new StringsCompleter("list"), new StringsCompleter("user_stories"), new StringsCompleter("filter"), new NullCompleter()));

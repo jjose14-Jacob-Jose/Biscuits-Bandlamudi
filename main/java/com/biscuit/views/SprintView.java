@@ -1,9 +1,7 @@
 package com.biscuit.views;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.biscuit.commands.help.SprintHelp;
+import com.biscuit.commands.project.SaveToFile;
 import com.biscuit.commands.sprint.ChangeStatusSprint;
 import com.biscuit.commands.sprint.EditSprint;
 import com.biscuit.commands.sprint.ShowSprint;
@@ -14,8 +12,10 @@ import com.biscuit.models.Sprint;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.enums.Status;
 import com.biscuit.models.services.Finder.UserStories;
-
 import jline.console.completer.Completer;
+
+import java.io.IOException;
+import java.util.List;
 
 public class SprintView extends View {
 
@@ -114,6 +114,8 @@ public class SprintView extends View {
 			return true;
 		} else if (words[0].equals("help")) {
 			return (new SprintHelp()).execute();
+		} else if (words[0].equals("print_to_file")) {
+			return (new SaveToFile()).saveToTextFile(sprint);
 		}
 		return false;
 	}

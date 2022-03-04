@@ -4,13 +4,13 @@
 
 package com.biscuit.models;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.biscuit.models.enums.SprintReviewStatus;
 import com.biscuit.models.enums.Status;
 import com.biscuit.models.enums.StatusSprint;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Sprint {
 
@@ -57,13 +57,13 @@ public class Sprint {
 		StringBuilder sprintInformation = new StringBuilder();
 		sprintInformation.append("Sprint Details " + "\n");
 		sprintInformation.append("Sprint Name :" + name + "\n");
-		sprintInformation.append("Sprint Description :" + name + "\n");
-		sprintInformation.append("Sprint State :" + name + "\n");
-		sprintInformation.append("Sprint Start Date :" + name + "\n");
-		sprintInformation.append("Sprint Due Date :" + name + "\n");
-		sprintInformation.append("Sprint Assigned Effort :" + name + "\n");
-		sprintInformation.append("Sprint Velocity :" + name + "\n");
-		sprintInformation.append("Sprint Retrospective Meeting Details :" + name + "\n");
+		sprintInformation.append("Sprint Description :" + description + "\n");
+		sprintInformation.append("Sprint State :" + state + "\n");
+		sprintInformation.append("Sprint Start Date :" + startDate + "\n");
+		sprintInformation.append("Sprint Due Date :" + dueDate + "\n");
+		sprintInformation.append("Sprint Assigned Effort :" + assignedEffort + "\n");
+		sprintInformation.append("Sprint Velocity :" + velocity + "\n");
+		sprintInformation.append("Sprint Retrospective Meeting Details :" + retrospectiveMeetingDetails + "\n");
 
 		if(userStories.size() == 0)
 		{

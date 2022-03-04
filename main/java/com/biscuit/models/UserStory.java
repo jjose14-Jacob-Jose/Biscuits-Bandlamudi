@@ -4,12 +4,12 @@
 
 package com.biscuit.models;
 
+import com.biscuit.models.enums.BusinessValue;
+import com.biscuit.models.enums.Status;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.biscuit.models.enums.BusinessValue;
-import com.biscuit.models.enums.Status;
 
 public class UserStory {
 
@@ -42,14 +42,14 @@ public class UserStory {
 
 	public String toString() {
 		StringBuilder userStoryDetails = new StringBuilder();
-		userStoryDetails.append("/n"+"User Story Information");
-		userStoryDetails.append("/n"+"Title: "+title);
-		userStoryDetails.append("/n"+"Description: "+description);
-		userStoryDetails.append("/n"+"Business Value: "+businessValue);
-		userStoryDetails.append("/n"+"Initiated Date: "+initiatedDate);
-		userStoryDetails.append("/n"+"Planned Date: "+plannedDate);
-		userStoryDetails.append("/n"+"Due Date: "+dueDate);
-		userStoryDetails.append("/n"+"Points: "+points);
+		userStoryDetails.append("User Story Information"+ "\n");
+		userStoryDetails.append("Title: "+title+ "\n");
+		userStoryDetails.append("Description: "+description+ "\n");
+		userStoryDetails.append("Business Value: "+businessValue+ "\n");
+		userStoryDetails.append("Initiated Date: "+initiatedDate+ "\n");
+		userStoryDetails.append("Planned Date: "+plannedDate+ "\n");
+		userStoryDetails.append("Due Date: "+dueDate+ "\n");
+		userStoryDetails.append("Points: "+points+ "\n");
 		return userStoryDetails.toString();
 	}
 

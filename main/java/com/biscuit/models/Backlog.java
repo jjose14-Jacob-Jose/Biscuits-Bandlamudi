@@ -29,9 +29,11 @@ public class Backlog {
 		else {
 			StringBuilder userStoriesInBacklog = new StringBuilder();
 			userStoriesInBacklog.append("Backlog user stories are:" + "\n");
-			for( UserStory userStory: userStories)
-			{
-				userStoriesInBacklog.append(userStory.toString());
+			if(userStories.size()>0) {
+				for (UserStory userStory : userStories) {
+					userStoriesInBacklog.append(userStory.toString());
+				}
+
 			}
 			return userStoriesInBacklog.toString();
 		}

@@ -2,6 +2,7 @@ package com.biscuit.commands.project;
 
 import com.biscuit.models.Backlog;
 import com.biscuit.models.Project;
+import com.biscuit.models.Sprint;
 import com.biscuit.models.UserStory;
 
 import java.io.File;
@@ -25,9 +26,9 @@ public class SaveToFile {
             }  else if (objectTobeSaved instanceof UserStory) {
                 outputFileName.append("\\" + ((UserStory) objectTobeSaved).title);
             }  else if (objectTobeSaved instanceof Backlog) {
-                outputFileName.append("\\" + ((Backlog) objectTobeSaved).project);
+                outputFileName.append("\\" + "Backlogs");
             }  else {
-                outputFileName.append("\\ ");
+                outputFileName.append("\\" + ((Sprint) objectTobeSaved).name);
             }
 
 
