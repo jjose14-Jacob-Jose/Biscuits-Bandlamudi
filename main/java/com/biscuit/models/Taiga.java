@@ -165,7 +165,7 @@ public class Taiga implements Command{
 		JSONArray getMilestonesObj = proJson.getJSONArray("milestones");
 		System.out.println("Milestones in project are: ");
 		for (int i=0;i<getMilestonesObj.length(); i++) {
-			JSONObject milestone = (JSONObject) getMembersObj.getJSONObject(i);
+			JSONObject milestone = (JSONObject) getMilestonesObj.getJSONObject(i);
 			System.out.println(milestone.getString("name") + "-" + milestone.getDouble("id"));
 		}
 		
