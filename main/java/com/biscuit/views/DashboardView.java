@@ -123,16 +123,35 @@ public class DashboardView extends View {
 		} else if (words[0].equals("get")) {
 			if (words[1].equals("project") || words[1].equals("projects")) {
 				if(Taiga.AUTH_TOKEN != null) {
-					System.out.println(ColorCodes.BLUE + "\nEnter project slug: " + ColorCodes.RESET);
+					String prompt = reader.getPrompt();
+					reader.setPrompt(ColorCodes.BLUE + "\nEnter project slug: " + ColorCodes.RESET);
 					String slug = reader.readLine();
 					new Taiga(reader).getProjectsBySlug(slug);
+					reader.setPrompt(prompt);
+					reader.println();
 					return true;
 				}
 				else {
 					System.out.println("Not Authenticated");
 					return false;
 				}
-			}
+			} else if (words[1].equals("user_stories") || words[1].equals("user_story")) {
+				System.out.println(1);
+				if(Taiga.AUTH_TOKEN != null) {
+					System.out.println(2);
+					String prompt = reader.getPrompt();
+					reader.setPrompt(ColorCodes.BLUE + "\nEnter project id: " + ColorCodes.RESET +"\n (use get projects command to see id)\n");
+					String id = reader.readLine();
+					new Taiga(reader).getUserstories(id);
+					reader.setPrompt(prompt);
+					reader.println();
+					return true;
+				}
+				else {
+					System.out.println("Not Authenticated");
+					return false;
+				}
+			} 
 		}
 		return false;
 	}

@@ -168,9 +168,40 @@ public class Taiga implements Command{
 			JSONObject milestone = (JSONObject) getMilestonesObj.getJSONObject(i);
 			System.out.println(milestone.getString("name") + "-" + milestone.getDouble("id"));
 		}
-		
 	}
 	
+	public void getUserstories(String proId) {
+		URL proURL;
+		try {
+			proURL = new URL("https://api.taiga.io/api/v1/userstories?project=" + proId);
+			
+		    HttpURLConnection proConn = (HttpURLConnection)proURL.openConnection();
+		    proConn.setRequestMethod("GET");
+		    proConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		    proConn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
+		    proConn.setDoOutput(true);
+		    
+		    System.out.println("Retrieving User stories by Project Id "+ proId + "\n");
+		    Reader proIin = new BufferedReader(new InputStreamReader(proConn.getInputStream(), "UTF-8"));
+		    StringBuilder sb1 = new StringBuilder();
+		    for (int c; (c = proIin.read()) >= 0;)
+		        sb1.append((char)c);
+		    String response1 = sb1.toString();
+		    displayUserStoryDetails(new JSONArray(response1.toString()));
+		    
+		  //  System.out.println(response1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void displayUserStoryDetails(JSONArray milestoneObj) {
+		for (int i=0;i<milestoneObj.length(); i++) {
+			JSONObject milestone = (JSONObject) milestoneObj.getJSONObject(i);
+			System.out.println(milestone.getDouble("id") +" - " + milestone.getString("subject") + "\n");
+		}
+	}
 	
 }
 
