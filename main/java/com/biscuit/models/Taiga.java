@@ -144,12 +144,12 @@ public class Taiga implements Command{
 	}
 	
 	public void displayProjectDetails(JSONObject proJson) {
-		System.out.println("Project ID: "+proJson.getDouble("id"));
-		System.out.println("Project Name: "+proJson.getString("name"));
-		System.out.println("Project Description: "+proJson.getString("description"));
+		System.out.println("Project ID: "+ proJson.getDouble("id") + "\n");
+		System.out.println("Project Name: "+proJson.getString("name") + "\n");
+		System.out.println("Project Description: "+proJson.getString("description") + "\n");
 		
 		JSONObject getOwnerObj = proJson.getJSONObject("owner");
-		System.out.println("Owner of Project: " + getOwnerObj.get("full_name_display"));
+		System.out.println("Owner of Project: " + getOwnerObj.get("full_name_display") + "\n");
 		
 		JSONArray getMembersObj = proJson.getJSONArray("members");
 		ArrayList<JSONObject> membersArray = new ArrayList<JSONObject>();
@@ -163,7 +163,7 @@ public class Taiga implements Command{
 			System.out.println(member.get("full_name") + "-" + member.getString("role_name"));
 		
 		JSONArray getMilestonesObj = proJson.getJSONArray("milestones");
-		System.out.println("Milestones in project are: ");
+		System.out.println("\nMilestones in project are: ");
 		for (int i=0;i<getMilestonesObj.length(); i++) {
 			JSONObject milestone = (JSONObject) getMilestonesObj.getJSONObject(i);
 			System.out.println(milestone.getString("name") + "-" + milestone.getDouble("id"));

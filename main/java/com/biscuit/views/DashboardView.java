@@ -123,7 +123,7 @@ public class DashboardView extends View {
 		} else if (words[0].equals("get")) {
 			if (words[1].equals("project") || words[1].equals("projects")) {
 				if(Taiga.AUTH_TOKEN != null) {
-					reader.setPrompt(ColorCodes.BLUE + "Enter project slug: " + ColorCodes.RESET);
+					System.out.println(ColorCodes.BLUE + "\nEnter project slug: " + ColorCodes.RESET);
 					String slug = reader.readLine();
 					new Taiga(reader).getProjectsBySlug(slug);
 					return true;
