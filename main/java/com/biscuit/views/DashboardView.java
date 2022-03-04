@@ -151,6 +151,22 @@ public class DashboardView extends View {
 					System.out.println("Not Authenticated");
 					return false;
 				}
+			} else if (words[1].equals("tasks") || words[1].equals("task")) {
+				System.out.println(1);
+				if(Taiga.AUTH_TOKEN != null) {
+					System.out.println(2);
+					String prompt = reader.getPrompt();
+					reader.setPrompt(ColorCodes.BLUE + "\nEnter user story id: " + ColorCodes.RESET +"\n (use get user_stories command to see id)\n");
+					String id = reader.readLine();
+					new Taiga(reader).getTasks(id);
+					reader.setPrompt(prompt);
+					reader.println();
+					return true;
+				}
+				else {
+					System.out.println("Not Authenticated");
+					return false;
+				}
 			} 
 		}
 		return false;

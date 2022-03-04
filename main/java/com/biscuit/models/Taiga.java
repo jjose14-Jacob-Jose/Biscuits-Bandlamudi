@@ -203,5 +203,38 @@ public class Taiga implements Command{
 		}
 	}
 	
+	public void getTasks(String userStoryId) {
+		URL proURL;
+		try {
+			proURL = new URL(" https://api.taiga.io/api/v1/tasks?user_story=" + userStoryId);
+			
+		    HttpURLConnection proConn = (HttpURLConnection)proURL.openConnection();
+		    proConn.setRequestMethod("GET");
+		    proConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		    proConn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
+		    proConn.setDoOutput(true);
+		    
+		    System.out.println("Retrieving Task Details by user story Id "+ userStoryId + "\n");
+		    Reader proIin = new BufferedReader(new InputStreamReader(proConn.getInputStream(), "UTF-8"));
+		    StringBuilder sb1 = new StringBuilder();
+		    for (int c; (c = proIin.read()) >= 0;)
+		        sb1.append((char)c);
+		    String response1 = sb1.toString();
+		    displayTaskDetails(new JSONArray(response1.toString()));
+		    
+		  //  System.out.println(response1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void displayTaskDetails(JSONArray userStoryObj) {
+		for (int i=0;i<userStoryObj.length(); i++) {
+			JSONObject task = (JSONObject) userStoryObj.getJSONObject(i);
+			System.out.println(task.getDouble("id") +" - " + task.getString("subject") + "\n");
+		}
+	}
+	
 }
 
