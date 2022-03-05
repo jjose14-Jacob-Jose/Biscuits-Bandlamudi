@@ -48,7 +48,7 @@ public class DashboardView extends View {
 
 
 	private boolean execute3Keyword(String[] words) throws IOException {
-		if (words[0].equals("go_to")) {
+		if (words[0].equals("go_to") || words[0].equals("gt")) {
 			// "project#1", "users", "contacts", "groups"
 
 			if (words[1].equals("project")) {
@@ -94,7 +94,7 @@ public class DashboardView extends View {
 
 
 	private boolean execute2Keyword(String[] words) throws IOException {
-		if (words[0].equals("go_to")) {
+		if (words[0].equals("go_to") || words[0].equals("gt")) {
 			// "project#1", "users", "contacts", "groups"
 
 			// check if project name
