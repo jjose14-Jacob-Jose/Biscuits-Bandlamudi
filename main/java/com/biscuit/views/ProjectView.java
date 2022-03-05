@@ -112,19 +112,19 @@ public class ProjectView extends View {
 
 			else if (words[1].equals("epics") ) {
 				if (words[2].equals("filter") || words[2].equals("f")) {
-					(new ListEpics(project , "epics")).execute();
+					(new ListEpics(project)).execute();
 					return true;
 				} else if (words[2].equals("sort") || words[2].equals("so")) {
-					(new ListEpics(project, "epics")).execute();
+					(new ListEpics(project)).execute();
 					return true;
 				}
 			}
 			else if (words[1].equals("themes")) {
 				if (words[2].equals("filter") || words[2].equals("f")) {
-					(new ListThemes(project , "themes")).execute();
+					(new ListThemes(project)).execute();
 					return true;
 				} else if (words[2].equals("sort") || words[2].equals("so")) {
-					(new ListThemes(project, "themes")).execute();
+					(new ListThemes(project)).execute();
 					return true;
 				}
 			}else if (words[1].equals("user_stories")) {
@@ -295,16 +295,8 @@ public class ProjectView extends View {
 					(new EditEpic(reader, s)).execute();
 					return true;
 				}
-				}
-			
-			
+				}	
 		}
-
-
-
-
-		
-
 		return false;
 	}
 
