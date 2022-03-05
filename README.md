@@ -1,3 +1,11 @@
+#### Executing Biscuit App
+1. In project directory, open CMD and execute 'mvn clean install' to generate JAR file. 
+2. Go to 'Target' folder, open CMD and run execute 'java -jar Biscuits-Bandlamudi-1.0-SNAPSHOT-jar-with-dependencies.jar'.
+
+Note:
+- The computer should have Java JDK and Maven installed. 
+
+
 ## Dr. Gary
 This is an interesting project on Github, creating a command-line interface in Java for scrum backlog management. The original GH is here: https://github.com/hamadmarri/Biscuit
 
