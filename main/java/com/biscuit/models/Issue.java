@@ -29,8 +29,8 @@ public static String[] fields;
 public static String[] fieldsAsHeader;
 
 static {
-	fields = new String[] { "name", "description" };
-	fieldsAsHeader = new String[] { "Name", "Description" };
+	fields = new String[] { "name", "description","type","severity","priority" };
+	fieldsAsHeader = new String[] { "Name", "Description" , "Type", "Severity", "Priority"};
 }
 
 
