@@ -7,6 +7,10 @@ package com.biscuit.views;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import com.biscuit.ColorCodes;
 import com.biscuit.commands.help.DashboardHelp;
 import com.biscuit.commands.project.AddProject;
@@ -21,8 +25,30 @@ import jline.console.completer.Completer;
 
 public class DashboardView extends View {
 
+	public static JFrame frame = new JFrame();
+	public static JPanel panel = new JPanel();
 	public DashboardView() {
 		super(null, "Dashboard");
+	
+		JButton addProject = new JButton("Add a Project");
+		JButton Help  = new JButton("Help");
+		JButton exit  = new JButton("Exit");
+
+		addProject.addActionListener(this);
+		Help.addActionListener(this);
+		exit.addActionListener(this);
+
+		panel.add(addProject);
+		panel.add(Help);
+		panel.add(exit);
+
+		
+	    frame.add(panel);
+		panel.setVisible(true);
+		frame.pack();
+		frame.setVisible(true);
+		
+		
 	}
 
 
@@ -48,10 +74,10 @@ public class DashboardView extends View {
 
 
 	private boolean execute3Keyword(String[] words) throws IOException {
-		if (words[0].equals("go_to")) {
+		if (words[0].equals("go_to") || words[0].equals("gt")) {
 			// "project#1", "users", "contacts", "groups"
 
-			if (words[1].equals("project")) {
+			if (words[1].equals("project") || words[1].equals("p")) {
 				// check if project name
 				Project p = Projects.getProject(words[2]);
 				if (p != null) {
@@ -61,7 +87,7 @@ public class DashboardView extends View {
 				}
 				return false;
 			}
-		} else if (words[1].equals("project")) {
+		} else if (words[1].equals("project") || words[1].equals("p")) {
 			if (words[0].equals("edit")) {
 				Project p = Projects.getProject(words[2]);
 				if (p != null) {
@@ -80,7 +106,7 @@ public class DashboardView extends View {
 				return false;
 			}
 		} else if (words[0].equals("get")) {
-			if (words[1].equals("project") || words[1].equals("projects")) {
+			if (words[1].equals("project") || words[1].equals("projects") || words[1].equals("p")) {
 				if(words[2].equals("by_slug")) {
 					reader.setPrompt(ColorCodes.BLUE + "Enter project slug: " + ColorCodes.RESET);
 					String slug = reader.readLine();
@@ -94,7 +120,7 @@ public class DashboardView extends View {
 
 
 	private boolean execute2Keyword(String[] words) throws IOException {
-		if (words[0].equals("go_to")) {
+		if (words[0].equals("go_to") || words[0].equals("gt")) {
 			// "project#1", "users", "contacts", "groups"
 
 			// check if project name
@@ -109,7 +135,7 @@ public class DashboardView extends View {
 		} else if (words[0].equals("list")) {
 			// projects
 			// "filter", "sort"
-		} else if (words[1].equals("project")) {
+		} else if (words[1].equals("project") || words[1].equals("p")) {
 			if (words[0].equals("add")) {
 				(new AddProject(reader)).execute();
 				resetCompleters();
@@ -121,16 +147,53 @@ public class DashboardView extends View {
 				return true;
 			}
 		} else if (words[0].equals("get")) {
-			if (words[1].equals("project") || words[1].equals("projects")) {
+			if (words[1].equals("project") || words[1].equals("projects") || words[1].equals("p")) {
 				if(Taiga.AUTH_TOKEN != null) {
-					new Taiga(reader).getProjects();
+					String prompt = reader.getPrompt();
+					reader.setPrompt(ColorCodes.BLUE + "\nEnter project slug: " + ColorCodes.RESET);
+					String slug = reader.readLine();
+					new Taiga(reader).getProjectsBySlug(slug);
+					reader.setPrompt(prompt);
+					reader.println();
 					return true;
 				}
 				else {
 					System.out.println("Not Authenticated");
 					return false;
 				}
-			}
+			} else if (words[1].equals("user_stories") || words[1].equals("user_story")) {
+				System.out.println(1);
+				if(Taiga.AUTH_TOKEN != null) {
+					System.out.println(2);
+					String prompt = reader.getPrompt();
+					reader.setPrompt(ColorCodes.BLUE + "\nEnter project id: " + ColorCodes.RESET +"\n (use get projects command to see id)\n");
+					String id = reader.readLine();
+					new Taiga(reader).getUserstories(id);
+					reader.setPrompt(prompt);
+					reader.println();
+					return true;
+				}
+				else {
+					System.out.println("Not Authenticated");
+					return false;
+				}
+			} else if (words[1].equals("tasks") || words[1].equals("task")) {
+				System.out.println(1);
+				if(Taiga.AUTH_TOKEN != null) {
+					System.out.println(2);
+					String prompt = reader.getPrompt();
+					reader.setPrompt(ColorCodes.BLUE + "\nEnter user story id: " + ColorCodes.RESET +"\n (use get user_stories command to see id)\n");
+					String id = reader.readLine();
+					new Taiga(reader).getTasks(id);
+					reader.setPrompt(prompt);
+					reader.println();
+					return true;
+				}
+				else {
+					System.out.println("Not Authenticated");
+					return false;
+				}
+			} 
 		}
 		return false;
 	}
@@ -138,7 +201,7 @@ public class DashboardView extends View {
 
 	private boolean execute1Keyword(String[] words) throws IOException {
 		if (words[0].equals("summary")) {
-		} else if (words[0].equals("projects")) {
+		} else if (words[0].equals("projects") || words[0].equals("p")) {
 		} else if (words[0].equals("alerts")) {
 		} else if (words[0].equals("check_alert")) {
 		} else if (words[0].equals("search")) {

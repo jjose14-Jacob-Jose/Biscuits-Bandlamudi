@@ -1,16 +1,15 @@
 package com.biscuit.factories;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.biscuit.models.UserStory;
 import com.biscuit.models.enums.Status;
 import com.biscuit.models.services.Finder.Tasks;
-
 import jline.console.completer.ArgumentCompleter;
 import jline.console.completer.Completer;
 import jline.console.completer.NullCompleter;
 import jline.console.completer.StringsCompleter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserStoryCompleterFactory {
 
@@ -49,7 +48,7 @@ public class UserStoryCompleterFactory {
 		// completers.add(new ArgumentCompleter(new StringsCompleter("go_to"),
 		// new StringsCompleter("bug#", "test#"), new NullCompleter()));
 
-		completers.add(new ArgumentCompleter(new StringsCompleter("show", "edit", "tasks", "back"), new NullCompleter()));
+		completers.add(new ArgumentCompleter(new StringsCompleter("show", "edit", "tasks", "back", "print_to_file"), new NullCompleter()));
 
 		completers.add(new ArgumentCompleter(new StringsCompleter("add"), new StringsCompleter("task"), new NullCompleter()));
 

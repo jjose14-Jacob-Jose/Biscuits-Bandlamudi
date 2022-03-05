@@ -4,18 +4,21 @@
 
 package com.biscuit.views;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.biscuit.ColorCodes;
+import com.biscuit.commands.help.GuiHelp;
 import com.biscuit.factories.UniversalCompleterFactory;
 
 import jline.console.ConsoleReader;
 import jline.console.completer.AggregateCompleter;
 import jline.console.completer.Completer;
 
-public abstract class View {
+public abstract class  View implements ActionListener {
 
 	static ConsoleReader reader;
 	static List<String> promptViews;
@@ -192,6 +195,16 @@ public abstract class View {
 		if (previousView != null) {
 			promptViews.remove(name);
 			previousView.view();
+		}
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getActionCommand().equals("Help")) {
+			new GuiHelp();
+		}
+		else if(e.getActionCommand().equals("Exit")) {
+			System.exit(0);
 		}
 	}
 

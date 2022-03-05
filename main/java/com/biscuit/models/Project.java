@@ -18,6 +18,7 @@ public class Project {
 	public List<Release> releases = new ArrayList<>();
 	public List<Sprint> sprints = new ArrayList<>();
 	public List<Epic> epics = new ArrayList<>();
+	public List<Issue> issues = new ArrayList<>();
 	public List<Theme> themes = new ArrayList<>();
 
 	public void save() {
@@ -79,6 +80,9 @@ public class Project {
 	public void addEpic(Epic e) {
 		epics.add(e);
 	}
+	public void addIssue(Issue e) {
+		issues.add(e);
+	}
 	
 	public void addTheme(Theme e) {
 		themes.add(e);
@@ -87,7 +91,18 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "project name: " + name + "\n\ndescription:-\n" + description + "\n\nGitURL:-\n" + gitURL;
+		StringBuilder projectDetails = new StringBuilder();
+		projectDetails.append("\n" + "Project Information" + "\n");
+		projectDetails.append("Project Name: " + name + "\n");
+		projectDetails.append("Project Description: " + description + "\n");
+		projectDetails.append("Project GitHub URL: " + gitURL + "\n");
+		projectDetails.append("Project Team Members: " + team_members + "\n");
+		projectDetails.append("Project Backlog: " + backlog.toString() + "\n");
+		projectDetails.append("Project Releases: " + releases.toString() + "\n");
+		projectDetails.append("Project Sprints: " + sprints.toString() + "\n");
+		projectDetails.append("Project Epics: " + epics.toString() + "\n");
+		projectDetails.append("Project Themes: " + themes.toString() + "\n");
+		return  projectDetails.toString();
 	}
 
 }
