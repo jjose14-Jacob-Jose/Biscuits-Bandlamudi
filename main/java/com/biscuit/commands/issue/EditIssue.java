@@ -13,7 +13,10 @@ import com.biscuit.factories.DateCompleter;
 import com.biscuit.models.Epic;
 import com.biscuit.models.Issue;
 import com.biscuit.models.Sprint;
+import com.biscuit.models.enums.Priority;
+import com.biscuit.models.enums.Severity;
 import com.biscuit.models.enums.Status;
+import com.biscuit.models.enums.Type;
 import com.biscuit.models.services.DateService;
 
 import jline.console.ConsoleReader;
@@ -40,6 +43,9 @@ public class EditIssue implements Command {
 
 		setName();
 		setDescription();
+		setType();
+		setSeverity();
+		setPriority();
 
 		reader.setPrompt(prompt);
 
@@ -50,12 +56,6 @@ public class EditIssue implements Command {
 
 
 	
-
-	
-
-
-	
-
 	
 
 	private void setDescription() throws IOException {
@@ -88,6 +88,101 @@ public class EditIssue implements Command {
 		reader.print("\r");
 
 		i.name = reader.readLine();
+	}
+	
+	private void setType() throws IOException {
+		// List<String> businessValues = new ArrayList<String>();
+		String line;
+		Completer oldCompleter = (Completer) reader.getCompleters().toArray()[0];
+
+
+		Completer businessValuesCompleter = new ArgumentCompleter(new StringsCompleter(Type.values), new NullCompleter());
+
+		reader.removeCompleter(oldCompleter);
+		reader.addCompleter(businessValuesCompleter);
+
+		reader.setPrompt(ColorCodes.BLUE + "\nType:\n"+ i.type + ColorCodes.YELLOW + "(hit Tab to see valid values)\n" + ColorCodes.RESET);
+
+		while ((line = reader.readLine()) != null) {
+			line = line.trim().toUpperCase();
+
+			try {
+				i.type = Type.valueOf(line);
+			} catch (IllegalArgumentException e) {
+				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				continue;
+			}
+
+			reader.removeCompleter(businessValuesCompleter);
+			reader.addCompleter(oldCompleter);
+			
+			break;
+		}
+
+	}
+	private void setSeverity() throws IOException {
+		// List<String> businessValues = new ArrayList<String>();
+		String line;
+		Completer oldCompleter = (Completer) reader.getCompleters().toArray()[0];
+
+		// for (BusinessValue bv : BusinessValue.values()) {
+		// businessValues.add(bv.name().toLowerCase());
+		// }
+
+		Completer businessValuesCompleter = new ArgumentCompleter(new StringsCompleter(Severity.values), new NullCompleter());
+
+		reader.removeCompleter(oldCompleter);
+		reader.addCompleter(businessValuesCompleter);
+
+		reader.setPrompt(ColorCodes.BLUE + "\nSeverity:\n"+i.severity + ColorCodes.YELLOW + "(hit Tab to see valid values)\n" + ColorCodes.RESET);
+
+		while ((line = reader.readLine()) != null) {
+			line = line.trim().toUpperCase();
+
+			try {
+				i.severity = Severity.valueOf(line);
+			} catch (IllegalArgumentException e) {
+				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				continue;
+			}
+
+			reader.removeCompleter(businessValuesCompleter);
+			reader.addCompleter(oldCompleter);
+			break;
+		}
+
+	}
+	private void setPriority() throws IOException {
+		// List<String> businessValues = new ArrayList<String>();
+		String line;
+		Completer oldCompleter = (Completer) reader.getCompleters().toArray()[0];
+
+		// for (BusinessValue bv : BusinessValue.values()) {
+		// businessValues.add(bv.name().toLowerCase());
+		// }
+
+		Completer businessValuesCompleter = new ArgumentCompleter(new StringsCompleter(Priority.values), new NullCompleter());
+
+		reader.removeCompleter(oldCompleter);
+		reader.addCompleter(businessValuesCompleter);
+
+		reader.setPrompt(ColorCodes.BLUE + "\nPriority:\n"+ i.priority +ColorCodes.YELLOW + "(hit Tab to see valid values)\n" + ColorCodes.RESET);
+
+		while ((line = reader.readLine()) != null) {
+			line = line.trim().toUpperCase();
+
+			try {
+				i.priority = Priority.valueOf(line);
+			} catch (IllegalArgumentException e) {
+				System.out.println(ColorCodes.RED + "invalid value" + ColorCodes.RESET);
+				continue;
+			}
+
+			reader.removeCompleter(businessValuesCompleter);
+			reader.addCompleter(oldCompleter);
+			break;
+		}
+
 	}
 
 

@@ -25,7 +25,9 @@ public class ShowIssue implements Command {
 		System.out.println(ColorCodes.BLUE + "Name: " + ColorCodes.RESET + e.name);
 		System.out.println(ColorCodes.BLUE + "Description: ");
 		System.out.println(ColorCodes.RESET + e.description);
-
+		System.out.println(ColorCodes.BLUE + "Type: " + ColorCodes.RESET + e.type);
+		System.out.println(ColorCodes.BLUE + "Severity: " + ColorCodes.RESET + e.severity);
+		System.out.println(ColorCodes.BLUE + "Priority: " + ColorCodes.RESET + e.priority);
 
 		System.out.println();
 
