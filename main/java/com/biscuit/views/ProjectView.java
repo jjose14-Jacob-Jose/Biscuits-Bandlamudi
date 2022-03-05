@@ -81,40 +81,57 @@ public class ProjectView extends View {
 
 
 	private boolean execute4Keywords(String[] words) throws IOException {
-		if (words[0].equals("show")) {
-			if (words[1].equals("backlog")) {
-				if (words[2].equals("filter")) {
+		if (words[0].equals("show") || words[0].equals("sh")) {
+			if (words[1].equals("backlog") || words[1].equals("b")) { 
+				if (words[2].equals("filter") || words[2].equals("f")) {
 					(new ListUserStories(project.backlog, "", true, words[3], false, "")).execute();
 					return true;
-				} else if (words[2].equals("sort")) {
+				} else if (words[2].equals("sort") || words[2].equals("so")) {
 					(new ListUserStories(project.backlog, "", false, "", true, words[3])).execute();
 					return true;
 				}
 			}
-		} else if (words[0].equals("list")) {
-			if (words[1].equals("releases")) {
-				if (words[2].equals("filter")) {
+		} else if (words[0].equals("list") || words[0].equals("l")) {
+			if (words[1].equals("releases") || words[1].equals("r")) {
+				if (words[2].equals("filter") || words[2].equals("f")) {
 					(new ListReleases(project, "Releases", true, words[3], false, "")).execute();
 					return true;
-				} else if (words[2].equals("sort")) {
+				} else if (words[2].equals("sort") || words[2].equals("so")) {
 					(new ListReleases(project, "Releases", false, "", true, words[3])).execute();
 					return true;
 				}
-			} else if (words[1].equals("sprints")) {
-				if (words[2].equals("filter")) {
+			} else if (words[1].equals("sprints") || words[1].equals("sp")) {
+				if (words[2].equals("filter") || words[2].equals("f")) {
 					(new ListSprints(project, "Sprints", true, words[3], false, "")).execute();
 					return true;
-				} else if (words[2].equals("sort")) {
+				} else if (words[2].equals("sort") || words[2].equals("so")) {
 					(new ListSprints(project, "Sprints", false, "", true, words[3])).execute();
 					return true;
 				}
 			} 
 
-			else if (words[1].equals("user_stories")) {
-				if (words[2].equals("filter")) {
+			else if (words[1].equals("epics") ) {
+				if (words[2].equals("filter") || words[2].equals("f")) {
+					(new ListEpics(project , "epics")).execute();
+					return true;
+				} else if (words[2].equals("sort") || words[2].equals("so")) {
+					(new ListEpics(project, "epics")).execute();
+					return true;
+				}
+			}
+			else if (words[1].equals("themes")) {
+				if (words[2].equals("filter") || words[2].equals("f")) {
+					(new ListThemes(project , "themes")).execute();
+					return true;
+				} else if (words[2].equals("sort") || words[2].equals("so")) {
+					(new ListThemes(project, "themes")).execute();
+					return true;
+				}
+			}else if (words[1].equals("user_stories")) {
+				if (words[2].equals("filter") || words[2].equals("f")) {
 					(new ListUserStories(UserStories.getAll(project), "User Stories (Filtered)", true, words[3], false, "")).execute();
 					return true;
-				} else if (words[2].equals("sort")) {
+				} else if (words[2].equals("sort") || words[2].equals("so")) {
 					(new ListUserStories(UserStories.getAll(project), "All User Stories", false, "", true, words[3])).execute();
 					return true;
 				}
