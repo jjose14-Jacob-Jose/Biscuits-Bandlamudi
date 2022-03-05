@@ -51,7 +51,7 @@ public class DashboardView extends View {
 		if (words[0].equals("go_to") || words[0].equals("gt")) {
 			// "project#1", "users", "contacts", "groups"
 
-			if (words[1].equals("project")) {
+			if (words[1].equals("project") || words[1].equals("p")) {
 				// check if project name
 				Project p = Projects.getProject(words[2]);
 				if (p != null) {
@@ -61,7 +61,7 @@ public class DashboardView extends View {
 				}
 				return false;
 			}
-		} else if (words[1].equals("project")) {
+		} else if (words[1].equals("project") || words[1].equals("p")) {
 			if (words[0].equals("edit")) {
 				Project p = Projects.getProject(words[2]);
 				if (p != null) {
@@ -80,7 +80,7 @@ public class DashboardView extends View {
 				return false;
 			}
 		} else if (words[0].equals("get")) {
-			if (words[1].equals("project") || words[1].equals("projects")) {
+			if (words[1].equals("project") || words[1].equals("projects") || words[1].equals("p")) {
 				if(words[2].equals("by_slug")) {
 					reader.setPrompt(ColorCodes.BLUE + "Enter project slug: " + ColorCodes.RESET);
 					String slug = reader.readLine();
@@ -109,7 +109,7 @@ public class DashboardView extends View {
 		} else if (words[0].equals("list")) {
 			// projects
 			// "filter", "sort"
-		} else if (words[1].equals("project")) {
+		} else if (words[1].equals("project") || words[1].equals("p")) {
 			if (words[0].equals("add")) {
 				(new AddProject(reader)).execute();
 				resetCompleters();
@@ -121,7 +121,7 @@ public class DashboardView extends View {
 				return true;
 			}
 		} else if (words[0].equals("get")) {
-			if (words[1].equals("project") || words[1].equals("projects")) {
+			if (words[1].equals("project") || words[1].equals("projects") || words[1].equals("p")) {
 				if(Taiga.AUTH_TOKEN != null) {
 					String prompt = reader.getPrompt();
 					reader.setPrompt(ColorCodes.BLUE + "\nEnter project slug: " + ColorCodes.RESET);
@@ -175,7 +175,7 @@ public class DashboardView extends View {
 
 	private boolean execute1Keyword(String[] words) throws IOException {
 		if (words[0].equals("summary")) {
-		} else if (words[0].equals("projects")) {
+		} else if (words[0].equals("projects") || words[0].equals("p")) {
 		} else if (words[0].equals("alerts")) {
 		} else if (words[0].equals("check_alert")) {
 		} else if (words[0].equals("search")) {
