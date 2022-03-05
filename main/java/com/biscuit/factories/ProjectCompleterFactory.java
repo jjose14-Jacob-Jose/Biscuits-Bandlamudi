@@ -94,7 +94,7 @@ public class ProjectCompleterFactory {
 		// "tests", "bugs", "planner"), new NullCompleter()));
 
 		completers.add(
-				new ArgumentCompleter(new StringsCompleter("releases", "sprints", "user_stories", "tasks", "backlog", "plan", "back"), new NullCompleter()));
+				new ArgumentCompleter(new StringsCompleter("releases", "sprints", "user_stories", "tasks", "backlog", "plan", "back", "print_to_file"), new NullCompleter()));
 
 		completers.add(new ArgumentCompleter(new StringsCompleter("plan"), new StringsCompleter("details"), new NullCompleter()));
 
