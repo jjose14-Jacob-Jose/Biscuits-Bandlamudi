@@ -18,7 +18,7 @@ public class Project {
 	public List<Release> releases = new ArrayList<>();
 	public List<Sprint> sprints = new ArrayList<>();
 	public List<Epic> epics = new ArrayList<>();
-	public List<Issue> issue = new ArrayList<>();
+	public List<Issue> issues = new ArrayList<>();
 	public List<Theme> themes = new ArrayList<>();
 
 	public void save() {
@@ -81,7 +81,7 @@ public class Project {
 		epics.add(e);
 	}
 	public void addIssue(Issue e) {
-		issue.add(e);
+		issues.add(e);
 	}
 	
 	public void addTheme(Theme e) {

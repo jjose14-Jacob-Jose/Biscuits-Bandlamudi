@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.biscuit.models.Backlog;
 import com.biscuit.models.Dashboard;
 import com.biscuit.models.Epic;
+import com.biscuit.models.Issue;
 import com.biscuit.models.Project;
 import com.biscuit.models.Release;
 import com.biscuit.models.Sprint;
@@ -282,6 +283,37 @@ public class Finder {
 		}
 
 	}
+	public static class Issues {
+
+		public static List<Issue> getAll(Project p) {
+			List<Issue> issues = new ArrayList<>();
+
+			issues.addAll(getIssue(p));
+
+			return issues;
+		}
+		public static List<Issue> getIssue(Project p) {
+			return p.issues;
+		}
+		
+		public static List<String> getAllNames(Project p) {
+			List<String> all = new ArrayList<>();
+			
+			all.addAll(getIssueNames(p));
+			
+			return all;
+		}
+		
+		public static List<String> getIssueNames(Project p) {
+			return p.issues.stream().map(s -> s.name).collect(Collectors.toList());
+		}
+
+
+		public static Issue find(Project p, String name) {
+			return getAll(p).stream().filter(s -> s.name.equals(name)).findAny().orElse(null);
+		}
+
+	}
 	
 	public static class Themes {
 
@@ -305,7 +337,7 @@ public class Finder {
 		}
 		
 		public static List<String> getThemeNames(Project p) {
-			return p.epics.stream().map(s -> s.name).collect(Collectors.toList());
+			return p.themes.stream().map(s -> s.name).collect(Collectors.toList());
 		}
 
 

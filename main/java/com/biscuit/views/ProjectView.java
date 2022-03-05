@@ -8,8 +8,14 @@ import java.io.IOException;
 import java.util.List;
 
 import com.biscuit.commands.epic.AddEpic;
+import com.biscuit.commands.epic.EditEpic;
 import com.biscuit.commands.epic.ListEpics;
+import com.biscuit.commands.epic.ShowEpic;
 import com.biscuit.commands.help.ProjectHelp;
+import com.biscuit.commands.issue.AddIssue;
+import com.biscuit.commands.issue.EditIssue;
+import com.biscuit.commands.issue.ListIssue;
+import com.biscuit.commands.issue.ShowIssue;
 import com.biscuit.commands.planner.ShowPlan;
 import com.biscuit.commands.planner.ShowPlanDetails;
 import com.biscuit.commands.project.ShowProject;
@@ -19,17 +25,21 @@ import com.biscuit.commands.sprint.AddSprint;
 import com.biscuit.commands.sprint.ListSprints;
 import com.biscuit.commands.task.ListTasks;
 import com.biscuit.commands.theme.AddTheme;
+import com.biscuit.commands.theme.EditTheme;
 import com.biscuit.commands.theme.ListThemes;
+import com.biscuit.commands.theme.ShowTheme;
 import com.biscuit.commands.userStory.AddUserStoryToBacklog;
 import com.biscuit.commands.userStory.ListUserStories;
 import com.biscuit.factories.ProjectCompleterFactory;
 import com.biscuit.models.Epic;
+import com.biscuit.models.Issue;
 import com.biscuit.models.Project;
 import com.biscuit.models.Release;
 import com.biscuit.models.Sprint;
 import com.biscuit.models.Theme;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.services.Finder.Epics;
+import com.biscuit.models.services.Finder.Issues;
 import com.biscuit.models.services.Finder.Releases;
 import com.biscuit.models.services.Finder.Sprints;
 import com.biscuit.models.services.Finder.Themes;
@@ -98,24 +108,8 @@ public class ProjectView extends View {
 					return true;
 				}
 			} 
-			else if (words[1].equals("epics")) {
-				if (words[2].equals("filter")) {
-					(new ListEpics(project , "epics")).execute();
-					return true;
-				} else if (words[2].equals("sort")) {
-					(new ListEpics(project, "epics")).execute();
-					return true;
-				}
-			}
-			else if (words[1].equals("themes")) {
-				if (words[2].equals("filter")) {
-					(new ListThemes(project , "themes")).execute();
-					return true;
-				} else if (words[2].equals("sort")) {
-					(new ListThemes(project, "themes")).execute();
-					return true;
-				}
-			}else if (words[1].equals("user_stories")) {
+
+			else if (words[1].equals("user_stories")) {
 				if (words[2].equals("filter")) {
 					(new ListUserStories(UserStories.getAll(project), "User Stories (Filtered)", true, words[3], false, "")).execute();
 					return true;
@@ -129,7 +123,7 @@ public class ProjectView extends View {
 	}
 
 
-	private boolean execute3Keywords(String[] words) {
+	private boolean execute3Keywords(String[] words) throws IOException {
 		if (words[0].equals("go_to")) {
 			if (words[1].equals("release")) {
 				if (Releases.getAllNames(project).contains(words[2])) {
@@ -199,6 +193,98 @@ public class ProjectView extends View {
 				}
 			}
 		}
+		else if (words[0].equals("show"))
+		{
+			if (words[1].equals("issue")) {
+				if (Issues.getAllNames(project).contains(words[2])) {
+					Issue s = Issues.find(project, words[2]);
+					if (s == null) {
+						return false;
+					}
+
+					// s.project = project;
+
+					(new ShowIssue(s)).execute();
+					return true;
+				}
+				}
+			else if (words[1].equals("epic")) {
+				if (Epics.getAllNames(project).contains(words[2])) {
+					Epic s = Epics.find(project, words[2]);
+					if (s == null) {
+						return false;
+					}
+
+					// s.project = project;
+
+					(new ShowEpic(s)).execute();
+					return true;
+				}
+				}
+			else if (words[1].equals("theme")) {
+				if (Themes.getAllNames(project).contains(words[2])) {
+					Theme s = Themes.find(project, words[2]);
+					if (s == null) {
+						return false;
+					}
+
+					// s.project = project;
+
+					(new ShowTheme(s)).execute();
+					return true;
+				}
+				}
+			
+		}
+		else if (words[0].equals("edit"))
+		{
+			if (words[1].equals("issue")) {
+				if (Issues.getAllNames(project).contains(words[2])) {
+					Issue s = Issues.find(project, words[2]);
+					if (s == null) {
+						return false;
+					}
+
+					// s.project = project;
+
+					(new EditIssue(reader, s)).execute();
+					return true;
+				}
+				}
+			else if (words[1].equals("theme")) {
+				System.out.println("hi");
+				if (Themes.getAllNames(project).contains(words[2])) {
+					Theme s = Themes.find(project, words[2]);
+					if (s == null) {
+						return false;
+					}
+
+					// s.project = project;
+
+					(new EditTheme(reader, s)).execute();
+					return true;
+				}
+				}
+			else if (words[1].equals("epic")) {
+				if (Epics.getAllNames(project).contains(words[2])) {
+					Epic s = Epics.find(project, words[2]);
+					if (s == null) {
+						return false;
+					}
+
+					// s.project = project;
+
+					(new EditEpic(reader, s)).execute();
+					return true;
+				}
+				}
+			
+			
+		}
+
+
+
+
 		
 
 		return false;
@@ -222,6 +308,12 @@ public class ProjectView extends View {
 				return true;
 			}else if (words[1].equals("epic")) {
 				(new AddEpic(reader, project)).execute();
+				resetCompleters();
+
+				return true;
+			}
+			else if (words[1].equals("issue")) {
+				(new AddIssue(reader, project)).execute();
 				resetCompleters();
 
 				return true;
@@ -286,11 +378,15 @@ public class ProjectView extends View {
 				return true;
 			} 
 			 else if (words[1].equals("epics")) {
-					(new ListEpics(project, "Epics")).execute();
+					(new ListEpics(project)).execute();
+					return true;
+					}
+			 else if (words[1].equals("issues")) {
+					(new ListIssue(project)).execute();
 					return true;
 					}
 			 else if (words[1].equals("themes")) {
-					(new ListThemes(project, "Themes")).execute();
+					(new ListThemes(project)).execute();
 					return true;
 					}else if (words[1].equals("user_stories")) {
 				(new ListUserStories(UserStories.getAll(project), "All User Stories")).execute();
@@ -302,6 +398,7 @@ public class ProjectView extends View {
 				return true;
 			}
 		}
+
 
 		return false;
 	}
