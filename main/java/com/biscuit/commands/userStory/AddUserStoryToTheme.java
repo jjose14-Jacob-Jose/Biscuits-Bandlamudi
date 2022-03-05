@@ -50,7 +50,7 @@ public class AddUserStoryToTheme implements Command {
 		theme.save();
 
 		reader.println();
-		reader.println(ColorCodes.GREEN + "User Story \"" + userStory.title + "\" has been added to sprint " + theme.name + "!" + ColorCodes.RESET);
+		reader.println(ColorCodes.GREEN + "User Story \"" + userStory.title + "\" has been added to theme " + theme.name + "!" + ColorCodes.RESET);
 
 		return false;
 	}
