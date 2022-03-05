@@ -295,16 +295,8 @@ public class ProjectView extends View {
 					(new EditEpic(reader, s)).execute();
 					return true;
 				}
-				}
-			
-			
+				}	
 		}
-
-
-
-
-		
-
 		return false;
 	}
 
