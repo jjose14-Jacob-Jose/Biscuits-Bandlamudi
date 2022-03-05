@@ -49,7 +49,7 @@ public class AddUserStoryToEpic implements Command {
 		epic.save();
 
 		reader.println();
-		reader.println(ColorCodes.GREEN + "User Story \"" + userStory.title + "\" has been added to sprint " + epic.name + "!" + ColorCodes.RESET);
+		reader.println(ColorCodes.GREEN + "User Story \"" + userStory.title + "\" has been added to Epic " + epic.name + "!" + ColorCodes.RESET);
 
 		return false;
 	}

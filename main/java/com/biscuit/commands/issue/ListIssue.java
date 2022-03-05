@@ -1,18 +1,16 @@
-package com.biscuit.commands.epic;
-
+package com.biscuit.commands.issue;
 
 import java.io.IOException;
 import java.util.List;
 
 import com.biscuit.commands.Command;
 import com.biscuit.models.Project;
-import com.biscuit.models.services.Finder.Epics;
 import com.biscuit.models.services.Finder.Issues;
 
-public class ListEpics implements Command{
+public class ListIssue implements Command{
 	
 	Project project = null;
-	public ListEpics(Project p)
+	public ListIssue(Project p)
 	{
 		super();
 		this.project = p;
@@ -20,7 +18,7 @@ public class ListEpics implements Command{
 	@Override
 	public boolean execute() throws IOException {
 		// TODO Auto-generated method stub
-		List<String> i= Epics.getAllNames(project);
+		List<String> i= Issues.getAllNames(project);
 		for(String s:i) {
 			System.out.println(s);
 		}
