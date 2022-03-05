@@ -4,14 +4,12 @@
 
 package com.biscuit.views;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.biscuit.commands.epic.AddEpic;
 import com.biscuit.commands.epic.ListEpics;
 import com.biscuit.commands.help.ProjectHelp;
 import com.biscuit.commands.planner.ShowPlan;
 import com.biscuit.commands.planner.ShowPlanDetails;
+import com.biscuit.commands.project.SaveToFile;
 import com.biscuit.commands.project.ShowProject;
 import com.biscuit.commands.release.AddRelease;
 import com.biscuit.commands.release.ListReleases;
@@ -23,19 +21,12 @@ import com.biscuit.commands.theme.ListThemes;
 import com.biscuit.commands.userStory.AddUserStoryToBacklog;
 import com.biscuit.commands.userStory.ListUserStories;
 import com.biscuit.factories.ProjectCompleterFactory;
-import com.biscuit.models.Epic;
-import com.biscuit.models.Project;
-import com.biscuit.models.Release;
-import com.biscuit.models.Sprint;
-import com.biscuit.models.Theme;
-import com.biscuit.models.UserStory;
-import com.biscuit.models.services.Finder.Epics;
-import com.biscuit.models.services.Finder.Releases;
-import com.biscuit.models.services.Finder.Sprints;
-import com.biscuit.models.services.Finder.Themes;
-import com.biscuit.models.services.Finder.UserStories;
-
+import com.biscuit.models.*;
+import com.biscuit.models.services.Finder.*;
 import jline.console.completer.Completer;
+
+import java.io.IOException;
+import java.util.List;
 
 public class ProjectView extends View {
 
@@ -345,6 +336,8 @@ public class ProjectView extends View {
 			return (new ShowProject(project).execute());
 		} else if (words[0].equals("help")) {
 			return (new ProjectHelp().execute());
+		}else if (words[0].equals("print_to_file")) {
+			return (new SaveToFile().saveToTextFile(project));
 		}
 
 		return false;

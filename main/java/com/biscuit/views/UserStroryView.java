@@ -1,9 +1,7 @@
 package com.biscuit.views;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.biscuit.commands.help.UserStoryHelp;
+import com.biscuit.commands.project.SaveToFile;
 import com.biscuit.commands.task.AddTaskToUserStory;
 import com.biscuit.commands.task.ListTasks;
 import com.biscuit.commands.userStory.ChangeStatusUserStory;
@@ -14,8 +12,10 @@ import com.biscuit.models.Task;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.enums.Status;
 import com.biscuit.models.services.Finder.Tasks;
-
 import jline.console.completer.Completer;
+
+import java.io.IOException;
+import java.util.List;
 
 public class UserStroryView extends View {
 
@@ -106,6 +106,8 @@ public class UserStroryView extends View {
 			return true;
 		} else if (words[0].equals("help")) {
 			return (new UserStoryHelp()).execute();
+		} else if (words[0].equals("print_to_file")) {
+			return (new SaveToFile().saveToTextFile(userStory));
 		}
 
 		return false;

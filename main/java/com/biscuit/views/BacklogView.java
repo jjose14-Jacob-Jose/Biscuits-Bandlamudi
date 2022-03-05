@@ -1,17 +1,17 @@
 package com.biscuit.views;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.biscuit.commands.help.BacklogHelp;
+import com.biscuit.commands.project.SaveToFile;
 import com.biscuit.commands.userStory.AddUserStoryToBacklog;
 import com.biscuit.commands.userStory.ListUserStories;
 import com.biscuit.factories.BacklogCompleterFactory;
 import com.biscuit.models.Backlog;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.services.Finder.UserStories;
-
 import jline.console.completer.Completer;
+
+import java.io.IOException;
+import java.util.List;
 
 public class BacklogView extends View {
 
@@ -99,6 +99,8 @@ public class BacklogView extends View {
 			return true;
 		} else if (words[0].equals("help")) {
 			return (new BacklogHelp()).execute();
+		} else if (words[0].equals("print_to_file")) {
+			return (new SaveToFile().saveToTextFile(backlog));
 		}
 
 		return false;

@@ -1,16 +1,15 @@
 package com.biscuit.factories;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.biscuit.models.Backlog;
 import com.biscuit.models.UserStory;
 import com.biscuit.models.services.Finder.UserStories;
-
 import jline.console.completer.ArgumentCompleter;
 import jline.console.completer.Completer;
 import jline.console.completer.NullCompleter;
 import jline.console.completer.StringsCompleter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BacklogCompleterFactory {
 
@@ -47,7 +46,7 @@ public class BacklogCompleterFactory {
 		// new StringsCompleter("open"), new StringsCompleter("user_stories"),
 		// new StringsCompleter("filter", "sort"), new NullCompleter()));
 
-		completers.add(new ArgumentCompleter(new StringsCompleter("user_stories", "back"), new NullCompleter()));
+		completers.add(new ArgumentCompleter(new StringsCompleter("user_stories", "back", "print_to_file"), new NullCompleter()));
 
 		completers.add(
 				new ArgumentCompleter(new StringsCompleter("list"), new StringsCompleter("user_stories"), new StringsCompleter("filter"), new NullCompleter()));

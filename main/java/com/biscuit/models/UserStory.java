@@ -4,12 +4,12 @@
 
 package com.biscuit.models;
 
+import com.biscuit.models.enums.BusinessValue;
+import com.biscuit.models.enums.Status;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.biscuit.models.enums.BusinessValue;
-import com.biscuit.models.enums.Status;
 
 public class UserStory {
 
@@ -38,6 +38,19 @@ public class UserStory {
 
 	public void save() {
 		project.save();
+	}
+
+	public String toString() {
+		StringBuilder userStoryDetails = new StringBuilder();
+		userStoryDetails.append("User Story Information"+ "\n");
+		userStoryDetails.append("Title: "+title+ "\n");
+		userStoryDetails.append("Description: "+description+ "\n");
+		userStoryDetails.append("Business Value: "+businessValue+ "\n");
+		userStoryDetails.append("Initiated Date: "+initiatedDate+ "\n");
+		userStoryDetails.append("Planned Date: "+plannedDate+ "\n");
+		userStoryDetails.append("Due Date: "+dueDate+ "\n");
+		userStoryDetails.append("Points: "+points+ "\n");
+		return userStoryDetails.toString();
 	}
 
 }

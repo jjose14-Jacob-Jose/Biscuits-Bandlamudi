@@ -35,4 +35,20 @@ public void save() {
 	project.save();
 }
 
+	public String toString () {
+		StringBuilder themeDetails = new StringBuilder();
+		themeDetails.append("Theme Name: "+ name + "\n");
+		themeDetails.append("Theme Description: "+ description + "\n");
+
+		if(userStories.size() == 0) {
+			themeDetails.append("Theme has no user stories");
+		}
+		else {
+			themeDetails.append("User stories in this theme are: " + "\n");
+			for(UserStory userStory: userStories) {
+				themeDetails.append(userStory.toString());
+			}
+		}
+		return themeDetails.toString();
+	}
 }
